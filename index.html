@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ANURAG SINGH — Creator</title>
+
+    <meta name="description"
+          content="ANURAG SINGH — Artist, Gamer, Creator & Developer.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND VIDEO */
+
+        .video-bg {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+            filter: brightness(0.48) saturate(1.15);
+        }
+
+        .dark-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,0.90) 0%,
+                    rgba(0,0,0,0.55) 45%,
+                    rgba(0,0,0,0.78) 100%
+                );
+        }
+
+        .bottom-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(0,0,0,0.35),
+                    transparent 35%,
+                    rgba(0,0,0,0.95)
+                );
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: min(1100px, calc(100% - 30px));
+            padding: 15px 22px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(15,15,15,0.45);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(18px);
+
+            border-radius: 18px;
+
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            opacity: 0.5;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.75;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            width: min(1200px, 100%);
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+
+            padding: 120px 30px 70px;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .tag {
+            display: inline-block;
+
+            padding: 8px 14px;
+            margin-bottom: 20px;
+
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 100px;
+
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(55px, 10vw, 125px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            margin-bottom: 25px;
+        }
+
+        h1 span {
+            display: block;
+            opacity: 0.45;
+        }
+
+        .hero p {
+            max-width: 580px;
+            color: rgba(255,255,255,0.72);
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 22px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+            color: white;
+
+            font-weight: 700;
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* SECTIONS */
+
+        section {
+            width: min(1100px, calc(100% - 30px));
+            margin: auto;
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: clamp(35px, 6vw, 65px);
+            letter-spacing: -2px;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 35px;
+        }
+
+        /* GLASS CARDS */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            min-height: 220px;
+
+            padding: 28px;
+
+            border-radius: 22px;
+
+            background: rgba(15,15,15,0.50);
+            border: 1px solid rgba(255,255,255,0.11);
+
+            backdrop-filter: blur(18px);
+
+            transition: 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(255,255,255,0.25);
+            background: rgba(25,25,25,0.65);
+        }
+
+        .card-number {
+            font-size: 12px;
+            opacity: 0.4;
+            margin-bottom: 35px;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.58);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* ABOUT */
+
+        .about-box {
+            padding: 35px;
+
+            border-radius: 25px;
+
+            background: rgba(10,10,10,0.55);
+            border: 1px solid rgba(255,255,255,0.12);
+
+            backdrop-filter: blur(20px);
+        }
+
+        .about-box p {
+            color: rgba(255,255,255,0.68);
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            text-align: center;
+            padding: 130px 20px;
+        }
+
+        .contact h2 {
+            font-size: clamp(40px, 7vw, 80px);
+            letter-spacing: -3px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 30px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.35);
+            font-size: 12px;
+        }
+
+        /* SOUND BUTTON */
+
+        #soundBtn {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(15,15,15,0.55);
+            color: white;
+
+            backdrop-filter: blur(15px);
+
+            cursor: pointer;
+            z-index: 100;
+
+            font-size: 18px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            nav {
+                padding: 13px 16px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            h1 {
+                letter-spacing: -3px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LORD KRISHNA BACKGROUND EDIT -->
+
+    <video
+        class="video-bg"
+        id="backgroundVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto">
+
+        <source src="krishna-edit.mp4" type="video/mp4">
+
+    </video>
+
+    <div class="dark-overlay"></div>
+    <div class="bottom-overlay"></div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="logo">
+            ANURAG<span>.</span>
+        </div>
+
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#art">Art</a></li>
+            <li><a href="#minecraft">Minecraft</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="tag">
+                    Creator Portfolio
+                </div>
+
+                <h1>
+                    ANURAG
+                    <span>SINGH</span>
+                </h1>
+
+                <p>
+                    Artist, gamer, creator and developer.
+                    Turning ideas into art, projects and digital experiences.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#projects" class="btn btn-primary">
+                        Explore My Work
+                    </a>
+
+                    <a href="#about" class="btn btn-secondary">
+                        About Me
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section id="about">
+
+            <h2 class="section-title">
+                About
+            </h2>
+
+            <p class="section-subtitle">
+                A little about the person behind the work.
+            </p>
+
+            <div class="about-box">
+
+                <p>
+                    I'm Anurag Singh — a young creator interested in
+                    drawing, anime, Minecraft, technology and coding.
+                    I enjoy creating things that feel unique and
+                    turning simple ideas into something people remember.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ART -->
+
+        <section id="art">
+
+            <h2 class="section-title">
+                Art
+            </h2>
+
+            <p class="section-subtitle">
+                Sketches, anime artwork and creative experiments.
+            </p>
+
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-number">01 / ART</div>
+                    <h3>Anime Art</h3>
+                    <p>
+                        Character drawings, sketches and anime-inspired artwork.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">02 / ART</div>
+                    <h3>Traditional</h3>
+                    <p>
+                        Pencil drawings, markers and hand-drawn artwork.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number">03 / ART</div>
+                    <h3>Edits</h3>
+                    <p>
+                        Creative edits and visual experiments.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MINECRAFT -->
+
+        <section id="minecraft">
+
+            <h2 class="section-title">
+                Minecraft
+            </h2>
+
+            <p class="section-subtitle">
+                Building worlds, servers and communities.
+            </p>
+
+            <div class="grid">
+
+                <div class="card">
+
+                    <div class="card-number">01 / SERVER</div>
+
+                    <h3>ANIVI SMP</h3>
+
+                    <p>
+                        A Minecraft SMP project with custom gameplay,
+                        community features and its own server experience.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-number">02 / GAMING</div>
+
+                    <h3>Server Development</h3>
+
+                    <p>
+                        Minecraft plugins, configurations,
+                        systems and server management.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-number">03 / COMMUNITY</div>
+
+                    <h3>Discord</h3>
+
+                    <p>
+                        Building Discord communities and useful
+                        tools for gaming projects.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section id="projects">
+
+            <h2 class="section-title">
+                Projects
+            </h2>
+
+            <p class="section-subtitle">
+                Things I'm building and experimenting with.
+            </p>
+
+            <div class="grid">
+
+                <div class="card">
+
+                    <div class="card-number">01</div>
+
+                    <h3>ANIVI SMP</h3>
+
+                    <p>
+                        Minecraft server and community project.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-number">02</div>
+
+                    <h3>Discord Bots</h3>
+
+                    <p>
+                        Custom Discord bot systems for communities
+                        and gaming servers.
+                    </p>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-number">03</div>
+
+                    <h3>Web Projects</h3>
+
+                    <p>
+                        Websites, experiments and digital projects.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section id="contact" class="contact">
+
+            <h2>
+                LET'S CREATE.
+            </h2>
+
+            <p>
+                Follow the journey and check out my latest work.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#" class="btn btn-primary">
+                    YouTube
+                </a>
+
+                <a href="#" class="btn btn-secondary">
+                    Instagram
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        © 2026 ANURAG SINGH — All Rights Reserved.
+    </footer>
+
+
+    <!-- SOUND CONTROL -->
+
+    <button id="soundBtn" aria-label="Toggle sound">
+        🔇
+    </button>
+
+
+    <script>
+
+        const video = document.getElementById("backgroundVideo");
+        const soundBtn = document.getElementById("soundBtn");
+
+        video.volume = 1;
+
+        soundBtn.addEventListener("click", async () => {
+
+            if (video.muted) {
+
+                video.muted = false;
+                soundBtn.textContent = "🔊";
+
+                try {
+                    await video.play();
+                } catch (error) {
+                    console.log("Playback blocked:", error);
+                }
+
+            } else {
+
+                video.muted = true;
+                soundBtn.textContent = "🔇";
+
+            }
+
+        });
+
+        /* Try autoplay */
+
+        video.play().catch(() => {
+            console.log("Browser waiting for user interaction.");
+        });
+
+    </script>
+
+</body>
+                      </html>
