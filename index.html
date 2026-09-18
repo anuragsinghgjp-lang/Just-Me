@@ -3,20 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ANURAG — THE MULTIVERSE</title>
-
-<meta name="description" content="ANURAG SINGH — Artist, Builder and Creator.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="ANURAG SINGH — The Multiverse. Artist, Creator and Builder.">
+<title>ANURAG SINGH — THE MULTIVERSE</title>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
 
 * {
     margin: 0;
@@ -29,8 +21,8 @@ html {
 }
 
 body {
-    background: #020204;
-    color: #fff;
+    background: #030303;
+    color: #f5f1e8;
     font-family: "Inter", sans-serif;
     overflow-x: hidden;
 }
@@ -42,633 +34,399 @@ body.locked {
 button,
 input,
 textarea {
-    font-family: inherit;
+    font: inherit;
 }
 
+button {
+    cursor: pointer;
+}
 
-/* =========================================================
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* =========================
    BACKGROUND VIDEO
-========================================================= */
+========================= */
 
-.video-bg {
+#backgroundVideo {
     position: fixed;
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
-    z-index: -10;
-
-    background: #020204;
-
-    opacity: 0.58;
+    z-index: -5;
+    filter: brightness(.28) saturate(.8);
 }
 
 .video-overlay {
     position: fixed;
     inset: 0;
-
-    z-index: -9;
-
+    z-index: -4;
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.75),
-            rgba(0,0,0,.25) 40%,
-            rgba(0,0,0,.9)
+            rgba(0,0,0,.72),
+            rgba(0,0,0,.32) 45%,
+            rgba(0,0,0,.88)
         );
-
     pointer-events: none;
 }
 
 .cosmic-overlay {
     position: fixed;
     inset: 0;
-
-    z-index: -8;
-
+    z-index: -3;
+    pointer-events: none;
     background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(255,255,255,.06),
-            transparent 35%
-        );
-
-    pointer-events: none;
+        radial-gradient(circle at 50% 35%, rgba(202,157,73,.10), transparent 30%),
+        radial-gradient(circle at 15% 70%, rgba(105,74,180,.08), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(255,214,130,.06), transparent 25%);
 }
 
-
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-#particles {
-    position: fixed;
-    inset: 0;
-
-    z-index: -5;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   PREMIUM ENTRY SCREEN
-========================================================= */
+/* =========================
+   AUDIO ENTRY SCREEN
+========================= */
 
 #audioGate {
     position: fixed;
     inset: 0;
-
-    z-index: 5000;
-
+    z-index: 99999;
+    background:
+        radial-gradient(circle at 50% 45%, #15110b 0%, #080706 35%, #020202 75%);
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
-
-    background: #020204;
-
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-
     transition:
-        opacity .9s ease,
-        visibility .9s ease;
+        opacity .8s ease,
+        visibility .8s ease;
 }
-
-
-/* Solid cinematic background */
 
 .entry-bg {
     position: absolute;
     inset: 0;
-
-    background:
-        radial-gradient(
-            circle at 50% 42%,
-            #1b160d 0%,
-            #0c0a08 27%,
-            #050507 58%,
-            #010102 100%
-        );
-
-    z-index: -5;
-}
-
-.entry-bg::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
     background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.5) .7px,
-            transparent .9px
-        );
-
-    background-size: 85px 85px;
-
-    opacity: .10;
+        radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: .28;
 }
-
-
-/* Golden atmosphere */
 
 .entry-glow {
     position: absolute;
-
-    width: 500px;
-    height: 500px;
-
     border-radius: 50%;
-
-    filter: blur(100px);
-
+    filter: blur(70px);
     pointer-events: none;
 }
 
 .entry-glow-1 {
-    background: rgba(184,135,45,.10);
-
-    top: -80px;
-    left: 50%;
-
-    transform: translateX(-50%);
+    width: 420px;
+    height: 420px;
+    background: rgba(183,136,52,.12);
+    top: -120px;
+    left: -100px;
 }
 
 .entry-glow-2 {
-    background: rgba(255,255,255,.035);
-
+    width: 500px;
+    height: 500px;
+    background: rgba(89,56,150,.10);
     right: -180px;
     bottom: -200px;
 }
 
-
-/* Sacred geometric rings */
-
 .entry-ring {
     position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    border: 1px solid rgba(207,168,82,.08);
-
+    border: 1px solid rgba(202,157,73,.14);
     border-radius: 50%;
-
-    pointer-events: none;
-
+    left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 .ring-1 {
-    width: 420px;
-    height: 420px;
-
-    transform:
-        translate(-50%, -50%)
-        rotate(45deg);
+    width: 520px;
+    height: 520px;
+    animation: rotateRing 30s linear infinite;
 }
 
 .ring-2 {
-    width: 610px;
-    height: 610px;
-
-    transform:
-        translate(-50%, -50%)
-        rotate(-25deg);
+    width: 720px;
+    height: 720px;
+    border-style: dashed;
+    opacity: .45;
+    animation: rotateRingReverse 45s linear infinite;
 }
 
 .ring-3 {
-    width: 800px;
-    height: 800px;
-
-    border-color: rgba(255,255,255,.035);
-
-    transform:
-        translate(-50%, -50%)
-        rotate(15deg);
+    width: 900px;
+    height: 900px;
+    opacity: .22;
 }
 
+@keyframes rotateRing {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
 
-/* Entry content */
+@keyframes rotateRingReverse {
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
 
 .entry-content {
     position: relative;
-
-    width: min(90%, 650px);
-
+    z-index: 5;
     text-align: center;
-
-    z-index: 10;
-
-    animation: entryAppear 1.3s ease forwards;
+    width: min(720px, 90%);
 }
-
-@keyframes entryAppear {
-
-    from {
-        opacity: 0;
-        transform: translateY(22px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* Top */
 
 .entry-top {
-    margin-bottom: 20px;
-
-    font-size: 9px;
-    font-weight: 600;
-
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
     letter-spacing: 7px;
-
-    color: rgba(255,255,255,.42);
+    color: #c7a45d;
+    margin-bottom: 22px;
 }
 
-
-/* Main title */
-
 .entry-title {
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(60px, 11vw, 120px);
-
-    line-height: .9;
-
-    font-weight: 800;
-
-    letter-spacing: -6px;
-
-    color: #fff;
-
-    text-shadow:
-        0 0 35px rgba(255,255,255,.08);
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(42px, 9vw, 86px);
+    font-weight: 700;
+    letter-spacing: 10px;
+    line-height: 1;
 }
 
 .entry-subtitle {
-    margin-top: 15px;
-
+    margin-top: 13px;
+    font-family: "Orbitron", sans-serif;
     font-size: clamp(11px, 2vw, 15px);
-
-    letter-spacing: 9px;
-
-    color: rgba(255,255,255,.5);
+    letter-spacing: 8px;
+    color: #b9b1a3;
 }
-
-
-/* Divider */
 
 .entry-divider {
     width: 90px;
     height: 1px;
-
-    margin: 32px auto 22px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(207,168,82,.85),
-            transparent
-        );
+    margin: 30px auto 20px;
+    background: linear-gradient(90deg, transparent, #c7a45d, transparent);
 }
 
-
-/* Sanskrit */
-
 .entry-sanskrit {
-    margin-bottom: 32px;
-
+    font-family: "Noto Sans Devanagari", sans-serif;
+    color: #d8bc7b;
     font-size: 20px;
-
-    color: rgba(225,190,105,.85);
-
     letter-spacing: 1px;
 }
 
-
-/* Question */
-
 .entry-question {
-    margin-bottom: 10px;
-
-    font-size: 9px;
-
-    letter-spacing: 4px;
-
+    margin-top: 40px;
+    color: #8f8a81;
     text-transform: uppercase;
-
-    color: rgba(255,255,255,.42);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
 }
 
 .entry-description {
-    margin-bottom: 28px;
-
-    font-size: 14px;
-
+    margin-top: 14px;
+    color: #e8e3d8;
+    font-size: 17px;
     line-height: 1.8;
-
-    color: rgba(255,255,255,.72);
 }
-
-
-/* Buttons */
 
 .entry-buttons {
     display: flex;
-
     justify-content: center;
-
-    align-items: center;
-
-    gap: 12px;
-
-    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
 }
 
 .entry-btn {
-    min-width: 185px;
-
+    min-width: 175px;
     padding: 15px 24px;
-
-    border-radius: 999px;
-
-    border: 1px solid rgba(255,255,255,.18);
-
-    background: #0c0c10;
-
-    color: rgba(255,255,255,.78);
-
+    border: 1px solid rgba(215,183,111,.38);
+    background: #090909;
+    color: #eee9df;
+    font-family: "Orbitron", sans-serif;
     font-size: 10px;
-
-    font-weight: 700;
-
     letter-spacing: 2px;
-
-    cursor: pointer;
-
-    transition:
-        transform .3s ease,
-        background .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
-}
-
-.entry-btn span {
-    margin-right: 7px;
+    transition: .3s ease;
 }
 
 .entry-btn:hover {
-    transform: translateY(-4px);
-
-    background: #17171c;
-
-    border-color: rgba(255,255,255,.4);
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.55);
+    transform: translateY(-3px);
+    border-color: #d7b76f;
+    box-shadow: 0 0 35px rgba(215,183,111,.12);
 }
 
 .entry-btn-main {
-    background: #f1eee7;
-
-    color: #080808;
-
-    border-color: #f1eee7;
-
-    box-shadow:
-        0 8px 30px rgba(255,255,255,.08);
+    background: linear-gradient(135deg, #c59b4b, #7d5b24);
+    color: #080705;
+    border-color: #d8bb78;
+    font-weight: 700;
 }
-
-.entry-btn-main:hover {
-    background: #fff;
-
-    color: #000;
-
-    box-shadow:
-        0 12px 40px rgba(255,255,255,.15);
-}
-
-
-/* Footer */
 
 .entry-footer {
-    margin-top: 25px;
-
+    margin-top: 28px;
+    color: #666158;
+    font-family: "Orbitron", sans-serif;
     font-size: 8px;
-
     letter-spacing: 3px;
-
-    color: rgba(255,255,255,.22);
 }
-
-
-/* Corner details */
 
 .entry-corner {
     position: absolute;
-
-    width: 45px;
-    height: 45px;
-
-    opacity: .4;
+    width: 55px;
+    height: 55px;
 }
 
 .corner-tl {
     top: 30px;
     left: 30px;
-
-    border-top: 1px solid rgba(255,255,255,.25);
-    border-left: 1px solid rgba(255,255,255,.25);
+    border-top: 1px solid #8c713f;
+    border-left: 1px solid #8c713f;
 }
 
 .corner-tr {
     top: 30px;
     right: 30px;
-
-    border-top: 1px solid rgba(255,255,255,.25);
-    border-right: 1px solid rgba(255,255,255,.25);
+    border-top: 1px solid #8c713f;
+    border-right: 1px solid #8c713f;
 }
 
 .corner-bl {
     bottom: 30px;
     left: 30px;
-
-    border-bottom: 1px solid rgba(255,255,255,.25);
-    border-left: 1px solid rgba(255,255,255,.25);
+    border-bottom: 1px solid #8c713f;
+    border-left: 1px solid #8c713f;
 }
 
 .corner-br {
     bottom: 30px;
     right: 30px;
-
-    border-bottom: 1px solid rgba(255,255,255,.25);
-    border-right: 1px solid rgba(255,255,255,.25);
+    border-bottom: 1px solid #8c713f;
+    border-right: 1px solid #8c713f;
 }
 
-
-/* =========================================================
+/* =========================
    LOADER
-========================================================= */
+========================= */
 
 #loader {
     position: fixed;
     inset: 0;
-
-    z-index: 4000;
-
+    z-index: 99990;
+    background: #030303;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: #030305;
-
-    opacity: 0;
     visibility: hidden;
+    opacity: 0;
     pointer-events: none;
-
-    transition:
-        opacity 1s ease,
-        visibility 1s ease;
+    transition: opacity .8s ease, visibility .8s ease;
 }
 
-.loader-content {
+.loader-inner {
     text-align: center;
 }
 
+.loader-small {
+    font-family: "Orbitron", sans-serif;
+    color: #8c826f;
+    font-size: 9px;
+    letter-spacing: 5px;
+    margin-bottom: 25px;
+}
+
 .loader-text {
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(16px, 4vw, 30px);
-
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(18px, 4vw, 35px);
     letter-spacing: 4px;
-
-    font-weight: 600;
 }
 
 .loader-line {
-    width: 0;
+    width: 180px;
     height: 1px;
-
+    background: linear-gradient(90deg, transparent, #c7a45d, transparent);
     margin: 25px auto 0;
-
-    background: #fff;
-
-    animation: loaderLine 2.2s ease forwards;
+    animation: loaderPulse 1.3s infinite;
 }
 
-@keyframes loaderLine {
-
-    to {
-        width: 220px;
-    }
-
+@keyframes loaderPulse {
+    0%,100% { opacity: .25; }
+    50% { opacity: 1; }
 }
 
-
-/* =========================================================
+/* =========================
    NAVBAR
-========================================================= */
+========================= */
 
 .navbar {
     position: fixed;
-
-    top: 20px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: min(92%, 1050px);
-
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 76px;
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-
-    padding: 14px 18px;
-
-    background: rgba(8,8,12,.7);
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    border-radius: 18px;
-
-    z-index: 1000;
+    padding: 0 5%;
+    z-index: 500;
+    background: linear-gradient(
+        180deg,
+        rgba(2,2,2,.88),
+        transparent
+    );
 }
 
 .logo {
-    color: #fff;
-
-    text-decoration: none;
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 15px;
-
-    font-weight: 800;
-
-    letter-spacing: 3px;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 4px;
 }
 
 .nav-links {
     display: flex;
-
-    gap: 22px;
+    align-items: center;
+    gap: 26px;
 }
 
 .nav-links a {
-    color: rgba(255,255,255,.62);
-
-    text-decoration: none;
-
-    font-size: 10px;
-
-    letter-spacing: 1.5px;
-
-    transition: .3s;
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: #aaa49a;
+    transition: .25s ease;
 }
 
 .nav-links a:hover {
-    color: #fff;
+    color: #e1bd72;
 }
 
 .sound-toggle {
-    width: 34px;
-    height: 34px;
-
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(211,177,102,.25);
+    background: rgba(0,0,0,.55);
+    color: #e3c27a;
     border-radius: 50%;
-
-    border: 1px solid rgba(255,255,255,.18);
-
-    background: rgba(255,255,255,.06);
-
-    color: #fff;
-
-    cursor: pointer;
+    transition: .3s ease;
 }
 
+.sound-toggle:hover {
+    border-color: #d7b76f;
+    transform: rotate(8deg);
+}
 
-/* =========================================================
+/* =========================
    GENERAL
-========================================================= */
+========================= */
 
 main {
     position: relative;
@@ -676,61 +434,46 @@ main {
 }
 
 section {
-    width: min(1100px, 92%);
-
-    margin: auto;
-
-    padding: 120px 0;
+    position: relative;
+    min-height: 100vh;
+    padding: 130px 7%;
 }
 
 .section-label {
-    margin-bottom: 18px;
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    color: rgba(255,255,255,.45);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: #a68750;
+    margin-bottom: 20px;
 }
 
 .section-title {
-    margin-bottom: 28px;
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(34px, 7vw, 68px);
-
-    line-height: 1;
-
-    letter-spacing: -2px;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(30px, 6vw, 70px);
+    letter-spacing: 3px;
+    line-height: 1.1;
 }
 
-.section-text {
-    max-width: 680px;
-
-    color: rgba(255,255,255,.65);
-
-    line-height: 1.9;
-
-    font-size: 15px;
+.section-description {
+    color: #9d988e;
+    line-height: 1.8;
+    max-width: 650px;
+    margin-top: 25px;
 }
 
+.gold {
+    color: #d7b76f;
+}
 
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
 .hero {
     min-height: 100vh;
-
     display: flex;
-
     align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 120px 20px 80px;
+    padding-top: 100px;
 }
 
 .hero-content {
@@ -738,717 +481,764 @@ section {
 }
 
 .hero-kicker {
-    margin-bottom: 20px;
-
+    font-family: "Orbitron", sans-serif;
     font-size: 10px;
-
     letter-spacing: 6px;
-
-    color: rgba(255,255,255,.5);
+    color: #b39359;
+    margin-bottom: 25px;
 }
 
 .hero h1 {
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(65px, 15vw, 180px);
-
-    line-height: .88;
-
-    font-weight: 800;
-
-    letter-spacing: -8px;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(52px, 12vw, 150px);
+    line-height: .9;
+    letter-spacing: 5px;
 }
 
-.hero-subtitle {
-    margin-top: 28px;
-
-    font-size: clamp(14px, 2vw, 18px);
-
-    letter-spacing: 7px;
-
-    color: rgba(255,255,255,.68);
+.hero h1 span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(239,230,211,.72);
 }
 
-.sanskrit {
+.hero-tagline {
     margin-top: 35px;
-
-    font-size: 22px;
-
-    color: rgba(255,255,255,.82);
-}
-
-.hero-description {
-    max-width: 650px;
-
-    margin: 28px auto 0;
-
-    color: rgba(255,255,255,.55);
-
+    max-width: 620px;
+    color: #b6b0a5;
+    font-size: 16px;
     line-height: 1.8;
-
-    font-size: 14px;
 }
 
-.hero-buttons {
+.hero-meta {
     margin-top: 38px;
-
     display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
-
     flex-wrap: wrap;
+    gap: 10px;
+}
+
+.meta-pill {
+    border: 1px solid rgba(215,183,111,.2);
+    padding: 10px 15px;
+    color: #9d9689;
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    background: rgba(0,0,0,.3);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.identity-file {
+    border-left: 1px solid rgba(215,183,111,.4);
+    padding-left: 30px;
+}
+
+.identity-top {
+    color: #766f64;
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+}
+
+.identity-name {
+    font-family: "Orbitron", sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+}
+
+.identity-role {
+    margin-top: 8px;
+    color: #c6a665;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.about-text {
+    margin-top: 30px;
+    color: #aaa49a;
+    line-height: 1.9;
+}
+
+.about-quote {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(25px, 4vw, 48px);
+    line-height: 1.25;
+}
+
+.about-quote span {
+    color: #c6a665;
+}
+
+.about-cards {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.about-card {
+    padding: 25px;
+    border: 1px solid rgba(215,183,111,.12);
+    background: rgba(0,0,0,.28);
+}
+
+.about-card h3 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #d6bb80;
+}
+
+.about-card p {
+    margin-top: 12px;
+    color: #858077;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* =========================
+   REALMS
+========================= */
+
+.realms {
+    text-align: center;
+}
+
+.realms .section-description {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.realm-grid {
+    margin-top: 65px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    text-align: left;
+}
+
+.realm-card {
+    min-height: 370px;
+    padding: 35px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(215,183,111,.15);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,13,10,.92),
+            rgba(3,3,3,.82)
+        );
+    transition: .4s ease;
+}
+
+.realm-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(215,183,111,.45);
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+
+.realm-number {
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    color: #685a43;
+    letter-spacing: 3px;
+}
+
+.realm-icon {
+    font-size: 38px;
+    margin-top: 45px;
+    filter: grayscale(1);
+}
+
+.realm-card h3 {
+    margin-top: 25px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 21px;
+    letter-spacing: 2px;
+}
+
+.realm-card p {
+    color: #858077;
+    margin-top: 15px;
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+.realm-card .realm-bottom {
+    position: absolute;
+    bottom: 30px;
+    left: 35px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #a98950;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills-layout {
+    margin-top: 65px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+}
+
+.skill {
+    margin-bottom: 30px;
+}
+
+.skill-head {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.skill-head span:last-child {
+    color: #777066;
+}
+
+.skill-bar {
+    height: 2px;
+    background: #171512;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #80632e, #d8b86c);
+}
+
+/* =========================
+   YOUTUBE
+========================= */
+
+.youtube {
+    display: flex;
+    align-items: center;
+}
+
+.youtube-box {
+    width: 100%;
+    border: 1px solid rgba(215,183,111,.18);
+    padding: clamp(35px, 7vw, 80px);
+    background:
+        radial-gradient(circle at 85% 20%, rgba(202,157,73,.08), transparent 30%),
+        rgba(0,0,0,.45);
+}
+
+.youtube-box h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(32px, 6vw, 75px);
+}
+
+.youtube-box p {
+    color: #969087;
+    line-height: 1.8;
+    max-width: 650px;
+    margin-top: 20px;
 }
 
 .btn {
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
-
-    padding: 14px 24px;
-
-    border: 1px solid rgba(255,255,255,.2);
-
-    border-radius: 999px;
-
-    background: rgba(255,255,255,.06);
-
-    color: #fff;
-
-    text-decoration: none;
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-
-    cursor: pointer;
-
+    padding: 15px 25px;
+    margin-top: 30px;
+    border: 1px solid rgba(215,183,111,.35);
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
     transition: .3s ease;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-
-    background: rgba(255,255,255,.14);
 }
 
 .btn.primary {
-    background: #fff;
-
-    color: #000;
+    background: #c5a25c;
+    color: #080705;
 }
 
-.scroll-indicator {
-    position: absolute;
-
-    bottom: 35px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    font-size: 9px;
-
-    letter-spacing: 4px;
-
-    color: rgba(255,255,255,.4);
+.btn.secondary {
+    background: transparent;
+    color: #d6bd83;
 }
 
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about-box {
-    padding: 55px;
-
-    background: rgba(8,8,12,.68);
-
-    backdrop-filter: blur(14px);
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    border-radius: 30px;
-}
-
-.identity {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 50px;
-}
-
-.identity-title {
-    margin-bottom: 18px;
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 27px;
-}
-
-.identity-text {
-    color: rgba(255,255,255,.6);
-
-    line-height: 1.9;
-
-    font-size: 14px;
-}
-
-.about-quote {
-    margin-top: 45px;
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(22px, 4vw, 38px);
-
-    line-height: 1.25;
-}
-
-.about-sanskrit {
-    margin-top: 18px;
-
-    color: rgba(255,255,255,.5);
-
-    font-size: 18px;
-}
-
-
-/* =========================================================
-   REALMS
-========================================================= */
-
-.realms {
-    display: grid;
-
-    grid-template-columns: repeat(3,1fr);
-
-    gap: 18px;
-}
-
-.realm {
-    min-height: 310px;
-
-    padding: 30px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: flex-end;
-
-    border: 1px solid rgba(255,255,255,.11);
-
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.08),
-            rgba(255,255,255,.025)
-        );
-
-    backdrop-filter: blur(12px);
-
-    transition: .45s ease;
-}
-
-.realm:hover {
-    transform: translateY(-8px);
-
-    border-color: rgba(255,255,255,.3);
-}
-
-.realm-icon {
-    font-size: 26px;
-
-    margin-bottom: auto;
-}
-
-.realm h3 {
-    margin-bottom: 12px;
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 22px;
-}
-
-.realm p {
-    color: rgba(255,255,255,.55);
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   SKILLS
-========================================================= */
-
-.skill-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2,1fr);
-
-    gap: 16px;
-}
-
-.skill {
-    padding: 28px;
-
-    background: rgba(8,8,12,.65);
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    border-radius: 20px;
-}
-
-.skill h3 {
-    margin-bottom: 10px;
-
-    font-family: "Montserrat", sans-serif;
-}
-
-.skill p {
-    color: rgba(255,255,255,.55);
-
-    font-size: 13px;
-
-    line-height: 1.8;
-}
-
-
-/* =========================================================
-   YOUTUBE
-========================================================= */
-
-.youtube-box {
-    padding: 65px 40px;
-
-    text-align: center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,.08),
-            rgba(255,255,255,.02)
-        );
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    border-radius: 30px;
-}
-
-.youtube-box h2 {
-    margin-bottom: 15px;
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(32px,7vw,70px);
-}
-
-.youtube-box p {
-    max-width: 550px;
-
-    margin: auto;
-
-    color: rgba(255,255,255,.55);
-
-    line-height: 1.8;
-}
-
-.youtube-box .btn {
-    margin-top: 30px;
-}
-
-
-/* =========================================================
+/* =========================
    ANURAG SYSTEM
-========================================================= */
+========================= */
 
-.system-box {
-    padding: 50px;
-
-    background: rgba(5,5,8,.78);
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    border-radius: 28px;
-
-    position: relative;
-
-    overflow: hidden;
+.system {
+    min-height: auto;
 }
 
-.system-top {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 35px;
-}
-
-.system-status {
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    color: rgba(255,255,255,.45);
-}
-
-.system-status::before {
-    content: "● ";
-
-    color: #fff;
-}
-
-.request-grid {
+.system-grid {
+    margin-top: 60px;
     display: grid;
-
-    grid-template-columns: repeat(3,1fr);
-
-    gap: 14px;
-}
-
-.request-card {
-    padding: 25px;
-
-    border: 1px solid rgba(255,255,255,.1);
-
-    border-radius: 18px;
-
-    background: rgba(255,255,255,.035);
-
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-.request-card:hover {
-    background: rgba(255,255,255,.09);
-
-    transform: translateY(-4px);
-}
-
-.request-card span {
-    display: block;
-
-    margin-bottom: 12px;
-
-    font-size: 9px;
-
-    color: rgba(255,255,255,.4);
-
-    letter-spacing: 2px;
-}
-
-.request-card h3 {
-    font-size: 16px;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact-box {
-    max-width: 800px;
-
-    margin: auto;
-}
-
-form {
-    display: grid;
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
-input,
-textarea {
-    width: 100%;
-
-    padding: 16px 18px;
-
-    border-radius: 15px;
-
-    border: 1px solid rgba(255,255,255,.12);
-
-    background: rgba(255,255,255,.045);
-
-    color: #fff;
-
-    outline: none;
+.system-card {
+    border: 1px solid rgba(215,183,111,.14);
+    padding: 30px;
+    background: rgba(0,0,0,.4);
+    transition: .3s ease;
 }
 
-input:focus,
-textarea:focus {
-    border-color: rgba(255,255,255,.4);
+.system-card:hover {
+    border-color: rgba(215,183,111,.42);
+    transform: translateY(-5px);
 }
 
-textarea {
-    min-height: 150px;
-
-    resize: vertical;
-}
-
-.form-note {
-    color: rgba(255,255,255,.4);
-
-    font-size: 11px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   DHARMA
-========================================================= */
-
-.dharma-trigger {
-    text-align: center;
-
-    margin-top: 80px;
-}
-
-.secret-button {
-    background: transparent;
-
-    border: none;
-
-    color: rgba(255,255,255,.18);
-
+.system-number {
+    font-family: "Orbitron", sans-serif;
     font-size: 9px;
-
-    letter-spacing: 4px;
-
-    cursor: pointer;
-
-    transition: .4s;
+    color: #71634e;
+    letter-spacing: 3px;
 }
 
-.secret-button:hover {
-    color: rgba(255,255,255,.6);
+.system-card h3 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-top: 30px;
 }
 
-#dharmaMessage {
-    position: fixed;
+.system-card p {
+    margin-top: 13px;
+    color: #858078;
+    line-height: 1.7;
+    font-size: 13px;
+}
 
-    inset: 0;
+.system-card button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 13px;
+    background: transparent;
+    color: #d2b36d;
+    border: 1px solid rgba(215,183,111,.22);
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    transition: .3s ease;
+}
 
-    z-index: 3000;
+.system-card button:hover {
+    background: rgba(215,183,111,.08);
+    border-color: #b99552;
+}
 
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section {
+    min-height: auto;
+    padding-bottom: 160px;
+}
+
+.contact-layout {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: .7fr 1.3fr;
+    gap: 80px;
+}
+
+.contact-info h3 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.contact-info p {
+    color: #89837a;
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+.contact-sanskrit {
+    margin-top: 45px;
+    color: #bd9b5a;
+    font-family: "Noto Sans Devanagari", sans-serif;
+    font-size: 19px;
+}
+
+.contact-form {
+    border: 1px solid rgba(215,183,111,.15);
+    background: rgba(2,2,2,.62);
+    padding: 35px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #777066;
+    margin-bottom: 9px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid rgba(215,183,111,.15);
+    background: #080808;
+    color: #eee9df;
+    padding: 14px 15px;
+    outline: none;
+    resize: vertical;
+    transition: .25s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: rgba(215,183,111,.55);
+    box-shadow: 0 0 20px rgba(215,183,111,.05);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #49453f;
+}
+
+.contact-submit {
+    width: 100%;
+}
+
+.contact-submit:disabled {
+    opacity: .5;
+    cursor: wait;
+}
+
+.contact-status {
+    min-height: 24px;
+    margin-top: 18px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.contact-status.success {
+    color: #d5b76f;
+}
+
+.contact-status.error {
+    color: #e17d7d;
+}
+
+/* =========================
+   DHARMA PROTOCOL
+========================= */
+
+.dharma {
+    min-height: 75vh;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    background: rgba(0,0,0,.96);
-
-    backdrop-filter: blur(20px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transition: .8s;
+    text-align: center;
+    overflow: hidden;
 }
 
-#dharmaMessage.active {
-    opacity: 1;
+.dharma::before,
+.dharma::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(215,183,111,.1);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
-    visibility: visible;
+.dharma::before {
+    width: 450px;
+    height: 450px;
+}
 
-    pointer-events: auto;
+.dharma::after {
+    width: 700px;
+    height: 700px;
+    border-style: dashed;
 }
 
 .dharma-content {
-    text-align: center;
-
-    padding: 30px;
+    position: relative;
+    z-index: 2;
 }
 
-.dharma-content small {
+.dharma-label {
+    font-family: "Orbitron", sans-serif;
     font-size: 9px;
-
     letter-spacing: 5px;
-
-    color: rgba(255,255,255,.4);
+    color: #786b55;
 }
 
-.dharma-content h2 {
-    margin: 25px 0;
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(30px,7vw,65px);
+.dharma h2 {
+    margin-top: 22px;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(30px, 6vw, 65px);
 }
 
-.dharma-content p {
-    color: rgba(255,255,255,.6);
-
-    font-size: 18px;
+.dharma p {
+    color: #8f897f;
+    max-width: 550px;
+    line-height: 1.8;
+    margin: 25px auto 0;
 }
 
+#dharmaButton {
+    margin-top: 30px;
+}
 
-/* =========================================================
+/* =========================
+   DHARMA MODAL
+========================= */
+
+#dharmaModal {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: #020202;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: .5s ease;
+}
+
+#dharmaModal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.dharma-modal-content {
+    width: min(700px, 88%);
+}
+
+.protocol {
+    color: #9e8050;
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 5px;
+}
+
+.protocol-title {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(30px, 7vw, 75px);
+    margin-top: 25px;
+}
+
+.protocol-line {
+    width: 100px;
+    height: 1px;
+    background: #c4a35e;
+    margin: 30px auto;
+}
+
+.protocol-message {
+    font-family: "Noto Sans Devanagari", sans-serif;
+    color: #d8bd7c;
+    font-size: clamp(20px, 4vw, 30px);
+}
+
+.protocol-sub {
+    margin-top: 20px;
+    color: #777067;
+    line-height: 1.8;
+}
+
+.close-protocol {
+    margin-top: 35px;
+    background: transparent;
+    border: 1px solid rgba(215,183,111,.3);
+    color: #c9aa68;
+    padding: 12px 22px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 footer {
-    padding: 100px 20px 40px;
-
-    text-align: center;
+    border-top: 1px solid rgba(215,183,111,.1);
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: #57534d;
+    font-family: "Orbitron", sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
 }
 
-.footer-name {
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(40px,8vw,85px);
-
-    font-weight: 800;
+footer span:last-child {
+    color: #927744;
 }
 
-.footer-role {
-    margin-top: 15px;
+/* =========================
+   PARTICLES
+========================= */
 
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    color: rgba(255,255,255,.45);
+.particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(230,209,164,.6);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatParticle linear infinite;
 }
 
-.footer-end {
-    margin-top: 50px;
-
-    font-size: 12px;
-
-    color: rgba(255,255,255,.35);
-}
-
-.footer-sanskrit {
-    margin-top: 18px;
-
-    font-size: 14px;
-
-    color: rgba(255,255,255,.45);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 800px) {
-
-    .navbar {
-        top: 10px;
+@keyframes floatParticle {
+    from {
+        transform: translateY(110vh);
+        opacity: 0;
     }
+    15% {
+        opacity: .6;
+    }
+    85% {
+        opacity: .6;
+    }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
 
     .nav-links {
         display: none;
     }
 
-    .hero h1 {
-        letter-spacing: -5px;
-    }
-
-    section {
-        padding: 90px 0;
-    }
-
-    .about-box {
-        padding: 30px;
-    }
-
-    .identity {
+    .about-grid,
+    .skills-layout,
+    .contact-layout {
         grid-template-columns: 1fr;
-
-        gap: 30px;
+        gap: 45px;
     }
 
-    .realms {
+    .realm-grid,
+    .system-grid {
         grid-template-columns: 1fr;
     }
 
-    .realm {
-        min-height: 250px;
-    }
-
-    .skill-grid {
+    .about-cards {
         grid-template-columns: 1fr;
     }
 
-    .request-grid {
-        grid-template-columns: 1fr;
+    .realm-card {
+        min-height: 320px;
     }
 
-    .system-box {
-        padding: 30px 20px;
+    .ring-1 {
+        width: 420px;
+        height: 420px;
     }
 
-    .youtube-box {
-        padding: 50px 25px;
+    .ring-2 {
+        width: 590px;
+        height: 590px;
     }
 
+    .ring-3 {
+        width: 730px;
+        height: 730px;
+    }
 }
-
-
-/* =========================================================
-   ENTRY MOBILE
-========================================================= */
 
 @media (max-width: 600px) {
 
-    .entry-title {
-        font-size: 62px;
-
-        letter-spacing: -4px;
+    section {
+        padding: 100px 6%;
     }
 
-    .entry-subtitle {
+    .navbar {
+        padding: 0 6%;
+    }
+
+    .logo {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .hero {
+        padding-top: 90px;
+    }
+
+    .hero h1 {
+        font-size: 50px;
+    }
+
+    .hero-tagline {
+        font-size: 14px;
+    }
+
+    .entry-top {
+        letter-spacing: 4px;
+    }
+
+    .entry-title {
+        font-size: 42px;
         letter-spacing: 6px;
     }
 
-    .entry-sanskrit {
-        font-size: 18px;
+    .entry-subtitle {
+        letter-spacing: 5px;
+    }
+
+    .entry-description {
+        font-size: 14px;
     }
 
     .entry-buttons {
         flex-direction: column;
-
         align-items: center;
     }
 
     .entry-btn {
-        width: min(290px,90%);
-    }
-
-    .ring-1 {
-        width: 330px;
-        height: 330px;
-    }
-
-    .ring-2 {
-        width: 470px;
-        height: 470px;
-    }
-
-    .ring-3 {
-        width: 620px;
-        height: 620px;
+        width: min(280px, 85vw);
     }
 
     .entry-corner {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
     }
 
     .corner-tl,
@@ -1471,22 +1261,26 @@ footer {
         right: 18px;
     }
 
-}
+    .contact-form {
+        padding: 22px;
+    }
 
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
 </style>
 </head>
 
-
 <body class="locked">
 
-
-<!-- =========================================================
-     VIDEO
-========================================================= -->
+<!-- =========================
+     BACKGROUND VIDEO
+========================= -->
 
 <video
     id="backgroundVideo"
-    class="video-bg"
     autoplay
     muted
     loop
@@ -1499,12 +1293,9 @@ footer {
 <div class="video-overlay"></div>
 <div class="cosmic-overlay"></div>
 
-<canvas id="particles"></canvas>
-
-
-<!-- =========================================================
-     ENTRY SCREEN
-========================================================= -->
+<!-- =========================
+     AUDIO ENTRY
+========================= -->
 
 <div id="audioGate">
 
@@ -1516,7 +1307,6 @@ footer {
     <div class="entry-ring ring-1"></div>
     <div class="entry-ring ring-2"></div>
     <div class="entry-ring ring-3"></div>
-
 
     <div class="entry-content">
 
@@ -1547,7 +1337,6 @@ footer {
             this universe with sound?
         </p>
 
-
         <div class="entry-buttons">
 
             <button
@@ -1555,29 +1344,24 @@ footer {
                 id="soundYes"
                 class="entry-btn entry-btn-main"
             >
-                <span>🔊</span>
-                YES, ENTER
+                🔊 YES, ENTER
             </button>
-
 
             <button
                 type="button"
                 id="soundNo"
                 class="entry-btn"
             >
-                <span>🔇</span>
-                NO, ENTER
+                🔇 NO, ENTER
             </button>
 
         </div>
-
 
         <div class="entry-footer">
             SOUND CAN BE CHANGED ANYTIME
         </div>
 
     </div>
-
 
     <div class="entry-corner corner-tl"></div>
     <div class="entry-corner corner-tr"></div>
@@ -1586,14 +1370,17 @@ footer {
 
 </div>
 
-
-<!-- =========================================================
+<!-- =========================
      LOADER
-========================================================= -->
+========================= -->
 
 <div id="loader">
 
-    <div class="loader-content">
+    <div class="loader-inner">
+
+        <div class="loader-small">
+            ANURAG MULTIVERSE
+        </div>
 
         <div class="loader-text">
             THIS IS WHERE THE LEGEND BEGINS.
@@ -1605,18 +1392,17 @@ footer {
 
 </div>
 
-
-<!-- =========================================================
+<!-- =========================
      NAVBAR
-========================================================= -->
+========================= -->
 
-<nav class="navbar">
+<header class="navbar">
 
     <a href="#home" class="logo">
         ANURAG
     </a>
 
-    <div class="nav-links">
+    <nav class="nav-links">
 
         <a href="#about">ABOUT</a>
         <a href="#realms">REALMS</a>
@@ -1624,82 +1410,71 @@ footer {
         <a href="#system">SYSTEM</a>
         <a href="#contact">CONTACT</a>
 
-    </div>
+    </nav>
 
     <button
-        type="button"
-        class="sound-toggle"
         id="soundToggle"
+        class="sound-toggle"
+        type="button"
+        aria-label="Toggle sound"
     >
         🔇
     </button>
 
-</nav>
-
-
-<!-- =========================================================
-     MAIN
-========================================================= -->
+</header>
 
 <main>
 
+<!-- =========================
+     HERO
+========================= -->
 
-<!-- HERO -->
-
-<section class="hero" id="home">
+<section id="home" class="hero">
 
     <div class="hero-content">
 
         <div class="hero-kicker">
-            REALMS DETECTED // 03
+            REALITY // PERSONAL UNIVERSE
         </div>
 
         <h1>
             ANURAG
+            <span>SINGH</span>
         </h1>
 
-        <div class="hero-subtitle">
-            THE MULTIVERSE
-        </div>
-
-        <div class="sanskrit">
-            कर्मण्येवाधिकारस्ते
-        </div>
-
-        <p class="hero-description">
-            One identity. Multiple worlds.
-            Art, technology, creativity and endless ideas —
-            all connected inside one universe.
+        <p class="hero-tagline">
+            Welcome to a universe built from art, ideas, code and
+            creativity. This is not just a portfolio.
+            <span class="gold">This is my multiverse.</span>
         </p>
 
-        <div class="hero-buttons">
+        <div class="hero-meta">
 
-            <a href="#realms" class="btn primary">
-                ENTER THE REALMS
-            </a>
+            <div class="meta-pill">
+                ARTIST
+            </div>
 
-            <a
-                href="https://www.youtube.com/@satoru_strokes7"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn"
-            >
-                YOUTUBE
-            </a>
+            <div class="meta-pill">
+                BUILDER
+            </div>
+
+            <div class="meta-pill">
+                CREATOR
+            </div>
+
+            <div class="meta-pill">
+                DREAMER
+            </div>
 
         </div>
 
-    </div>
-
-
-    <div class="scroll-indicator">
-        SCROLL TO EXPLORE
     </div>
 
 </section>
 
-
-<!-- ABOUT -->
+<!-- =========================
+     ABOUT
+========================= -->
 
 <section id="about">
 
@@ -1711,107 +1486,120 @@ footer {
         ABOUT
     </div>
 
+    <div class="about-grid">
 
-    <div class="about-box">
+        <div>
 
-        <div class="identity">
-
-            <div>
-
-                <div class="identity-title">
-                    ANURAG SINGH
-                </div>
-
-                <p class="identity-text">
-                    I don't like staying in one world.
-                    I like creating them.
-                </p>
-
-                <br>
-
-                <p class="identity-text">
-                    I'm an artist, builder and creator exploring
-                    different forms of creativity — from anime art
-                    and visual ideas to coding, Minecraft development
-                    and digital projects.
-                </p>
-
+            <div class="about-quote">
+                I don't like<br>
+                staying in <span>one world.</span>
             </div>
 
+            <p class="about-text">
+                I'm Anurag Singh — a young creator exploring different
+                worlds through art, technology and content.
+                I enjoy turning ideas into something people can see,
+                use or experience.
+            </p>
 
-            <div>
+            <div class="about-cards">
 
-                <div class="identity-title">
-                    THREE DIRECTIONS
+                <div class="about-card">
+
+                    <h3>CREATE</h3>
+
+                    <p>
+                        Anime art, drawings, visual concepts and
+                        creative ideas brought to life.
+                    </p>
+
                 </div>
 
-                <p class="identity-text">
-                    <strong>CREATE</strong><br>
-                    Anime, drawings and visual creativity.
-                </p>
+                <div class="about-card">
 
-                <br>
+                    <h3>BUILD</h3>
 
-                <p class="identity-text">
-                    <strong>BUILD</strong><br>
-                    Coding, Minecraft server development,
-                    plugins, configurations and digital systems.
-                </p>
+                    <p>
+                        Coding, Minecraft server development,
+                        plugins, configurations and digital projects.
+                    </p>
 
-                <br>
+                </div>
 
-                <p class="identity-text">
-                    <strong>CREATE AGAIN</strong><br>
-                    YouTube, edits, ideas and content.
-                </p>
+                <div class="about-card">
+
+                    <h3>CREATE AGAIN</h3>
+
+                    <p>
+                        YouTube, edits, experiments and content
+                        made to share ideas with the world.
+                    </p>
+
+                </div>
 
             </div>
 
         </div>
 
+        <div class="identity-file">
 
-        <div class="about-quote">
-            Still learning.<br>
-            Still building.<br>
-            Still creating.
-        </div>
+            <div class="identity-top">
+                IDENTITY // 001
+            </div>
 
-        <div class="about-sanskrit">
-            कर्मण्येवाधिकारस्ते
+            <div class="identity-name">
+                ANURAG SINGH
+            </div>
+
+            <div class="identity-role">
+                CREATOR • ARTIST • BUILDER
+            </div>
+
+            <p class="about-text">
+                Still learning.<br>
+                Still building.<br>
+                Still creating.
+            </p>
+
+            <div class="entry-sanskrit" style="margin-top:35px;">
+                कर्मण्येवाधिकारस्ते
+            </div>
+
         </div>
 
     </div>
 
 </section>
 
+<!-- =========================
+     REALMS
+========================= -->
 
-<!-- REALMS -->
-
-<section id="realms">
+<section id="realms" class="realms">
 
     <div class="section-label">
-        02 // REALMS
+        02 // REALMS DETECTED
     </div>
 
     <div class="section-title">
         THE MULTIVERSE
     </div>
 
-    <p
-        class="section-text"
-        style="margin-bottom:40px;"
-    >
-        Every interest becomes a different realm.
-        Explore the worlds that make up ANURAG.
+    <p class="section-description">
+        Three different worlds. One creator.
+        Explore the parts that make up my digital universe.
     </p>
 
+    <div class="realm-grid">
 
-    <div class="realms">
+        <div class="realm-card">
 
-        <div class="realm">
+            <div class="realm-number">
+                REALM 01
+            </div>
 
             <div class="realm-icon">
-                ◈
+                ✦
             </div>
 
             <h3>
@@ -1819,14 +1607,21 @@ footer {
             </h3>
 
             <p>
-                Anime drawings, sketches, visual experiments
-                and creative concepts.
+                Anime drawings, character art, creative experiments
+                and visual ideas.
             </p>
+
+            <div class="realm-bottom">
+                CREATIVITY // UNLIMITED
+            </div>
 
         </div>
 
+        <div class="realm-card">
 
-        <div class="realm">
+            <div class="realm-number">
+                REALM 02
+            </div>
 
             <div class="realm-icon">
                 ◉
@@ -1837,14 +1632,21 @@ footer {
             </h3>
 
             <p>
-                YouTube, edits, content ideas and turning
-                concepts into something people can experience.
+                YouTube, edits, concepts and content created
+                to turn ideas into experiences.
             </p>
+
+            <div class="realm-bottom">
+                IDEAS // TRANSMITTED
+            </div>
 
         </div>
 
+        <div class="realm-card">
 
-        <div class="realm">
+            <div class="realm-number">
+                REALM 03
+            </div>
 
             <div class="realm-icon">
                 ⬡
@@ -1855,9 +1657,13 @@ footer {
             </h3>
 
             <p>
-                Coding, Minecraft server development,
-                plugins, configurations and digital projects.
+                Coding, Minecraft server development, plugins,
+                configurations and digital systems.
             </p>
+
+            <div class="realm-bottom">
+                SYSTEMS // CONSTRUCTED
+            </div>
 
         </div>
 
@@ -1865,81 +1671,110 @@ footer {
 
 </section>
 
-
-<!-- SKILLS -->
+<!-- =========================
+     SKILLS
+========================= -->
 
 <section id="skills">
 
     <div class="section-label">
-        03 // CAPABILITIES
+        03 // ABILITIES
     </div>
 
     <div class="section-title">
-        BUILDER FILE
+        SKILLS
     </div>
 
-    <p
-        class="section-text"
-        style="margin-bottom:40px;"
-    >
-        The things I build, learn and experiment with.
+    <p class="section-description">
+        The tools and creative abilities I continue to learn,
+        experiment with and improve.
     </p>
 
+    <div class="skills-layout">
 
-    <div class="skill-grid">
+        <div>
 
-        <div class="skill">
+            <div class="skill">
 
-            <h3>
-                ART & ANIME
-            </h3>
+                <div class="skill-head">
+                    <span>DIGITAL / ANIME ART</span>
+                    <span>CREATIVE</span>
+                </div>
 
-            <p>
-                Anime-inspired drawings, character art,
-                sketches, editing and visual creativity.
-            </p>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:88%"></div>
+                </div>
+
+            </div>
+
+            <div class="skill">
+
+                <div class="skill-head">
+                    <span>VIDEO EDITING</span>
+                    <span>CREATIVE</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:78%"></div>
+                </div>
+
+            </div>
+
+            <div class="skill">
+
+                <div class="skill-head">
+                    <span>CONTENT CREATION</span>
+                    <span>BUILDING</span>
+                </div>
+
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:82%"></div>
+                </div>
+
+            </div>
 
         </div>
 
+        <div>
 
-        <div class="skill">
+            <div class="skill">
 
-            <h3>
-                CODING & DEVELOPMENT
-            </h3>
+                <div class="skill-head">
+                    <span>CODING</span>
+                    <span>LEARNING</span>
+                </div>
 
-            <p>
-                Learning programming, building digital projects,
-                experimenting with websites and interactive systems.
-            </p>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:65%"></div>
+                </div>
 
-        </div>
+            </div>
 
+            <div class="skill">
 
-        <div class="skill">
+                <div class="skill-head">
+                    <span>MINECRAFT SERVER DEVELOPMENT</span>
+                    <span>BUILDING</span>
+                </div>
 
-            <h3>
-                MINECRAFT SERVER DEVELOPMENT
-            </h3>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:84%"></div>
+                </div>
 
-            <p>
-                Server configuration, plugins, permissions,
-                gameplay systems, worlds and server management.
-            </p>
+            </div>
 
-        </div>
+            <div class="skill">
 
+                <div class="skill-head">
+                    <span>IDEA / PROJECT BUILDING</span>
+                    <span>EVOLVING</span>
+                </div>
 
-        <div class="skill">
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width:86%"></div>
+                </div>
 
-            <h3>
-                CONTENT CREATION
-            </h3>
-
-            <p>
-                YouTube videos, anime content, edits,
-                creative concepts and experiments.
-            </p>
+            </div>
 
         </div>
 
@@ -1947,124 +1782,132 @@ footer {
 
 </section>
 
+<!-- =========================
+     YOUTUBE
+========================= -->
 
-<!-- YOUTUBE -->
-
-<section>
+<section class="youtube">
 
     <div class="youtube-box">
 
         <div class="section-label">
-            CREATOR REALM
+            04 // CREATOR CHANNEL
         </div>
 
         <h2>
-            YOUTUBE
+            WATCH THE<br>
+            <span class="gold">JOURNEY.</span>
         </h2>
 
         <p>
-            Art. Anime. Edits. Experiments.
-            Follow the journey outside this website.
+            Art, anime, edits and creative experiments.
+            Follow the journey as the multiverse keeps expanding.
         </p>
 
+        <!-- Replace with your actual YouTube channel URL if needed -->
         <a
             href="https://www.youtube.com/@satoru_strokes7"
             target="_blank"
             rel="noopener noreferrer"
             class="btn primary"
         >
-            OPEN CHANNEL
+            OPEN YOUTUBE
         </a>
 
     </div>
 
 </section>
 
+<!-- =========================
+     ANURAG SYSTEM
+========================= -->
 
-<!-- ANURAG SYSTEM -->
-
-<section id="system">
+<section id="system" class="system">
 
     <div class="section-label">
-        04 // INTERACTION
+        05 // ANURAG SYSTEM
     </div>
 
     <div class="section-title">
-        ANURAG SYSTEM
+        INTERACT
     </div>
 
-    <p
-        class="section-text"
-        style="margin-bottom:35px;"
-    >
-        Want to interact with the creator?
-        Choose a protocol.
+    <p class="section-description">
+        Want to send something into my universe?
+        Choose a transmission type.
     </p>
 
+    <div class="system-grid">
 
-    <div class="system-box">
+        <div class="system-card">
 
-        <div class="system-top">
-
-            <strong>
-                ANURAG.SYSTEM
-            </strong>
-
-            <div class="system-status">
-                ONLINE
+            <div class="system-number">
+                TRANSMISSION 01
             </div>
+
+            <h3>
+                REQUEST ARTWORK
+            </h3>
+
+            <p>
+                Have an artwork idea or want a custom drawing?
+                Send the details directly.
+            </p>
+
+            <button
+                type="button"
+                onclick="openRequest('REQUEST ARTWORK')"
+            >
+                INITIALIZE REQUEST
+            </button>
 
         </div>
 
+        <div class="system-card">
 
-        <div class="request-grid">
-
-            <div
-                class="request-card"
-                onclick="openRequest('ARTWORK')"
-            >
-
-                <span>
-                    PROTOCOL 01
-                </span>
-
-                <h3>
-                    REQUEST ARTWORK
-                </h3>
-
+            <div class="system-number">
+                TRANSMISSION 02
             </div>
 
+            <h3>
+                YOUTUBE IDEA
+            </h3>
 
-            <div
-                class="request-card"
+            <p>
+                Have an idea for a video, short, drawing or edit?
+                Send your suggestion.
+            </p>
+
+            <button
+                type="button"
                 onclick="openRequest('YOUTUBE IDEA')"
             >
+                SEND IDEA
+            </button>
 
-                <span>
-                    PROTOCOL 02
-                </span>
+        </div>
 
-                <h3>
-                    YOUTUBE IDEA
-                </h3>
+        <div class="system-card">
 
+            <div class="system-number">
+                TRANSMISSION 03
             </div>
 
+            <h3>
+                CONTACT
+            </h3>
 
-            <div
-                class="request-card"
+            <p>
+                General message, collaboration idea or anything
+                else you want to say.
+            </p>
+
+            <button
+                type="button"
                 onclick="openRequest('CONTACT')"
             >
-
-                <span>
-                    PROTOCOL 03
-                </span>
-
-                <h3>
-                    CONTACT
-                </h3>
-
-            </div>
+                OPEN CHANNEL
+            </button>
 
         </div>
 
@@ -2072,86 +1915,174 @@ footer {
 
 </section>
 
+<!-- =========================
+     CONTACT
+========================= -->
 
-<!-- CONTACT -->
-
-<section id="contact">
+<section id="contact" class="contact-section">
 
     <div class="section-label">
-        05 // TRANSMISSION
+        06 // TRANSMISSION CHANNEL
     </div>
 
     <div class="section-title">
         CONTACT
     </div>
 
+    <div class="contact-layout">
 
-    <div class="contact-box">
+        <div class="contact-info">
 
-        <p
-            class="section-text"
-            style="margin-bottom:30px;"
-        >
-            Send a message, idea or request.
-        </p>
+            <h3>
+                SEND A MESSAGE.
+            </h3>
 
+            <p>
+                Enter your details and message here.
+                You do not need to open an email app.
+                Your message will be sent directly through
+                the website.
+            </p>
+
+            <div class="contact-sanskrit">
+                कर्मण्येवाधिकारस्ते
+            </div>
+
+        </div>
+
+        <!--
+            IMPORTANT:
+            Replace YOUR_FORMSPREE_ENDPOINT with your
+            real Formspree endpoint.
+        -->
 
         <form
-            action="mailto:"
-            method="post"
-            enctype="text/plain"
+            id="contact-form"
+            class="contact-form"
+            action="YOUR_FORMSPREE_ENDPOINT"
+            method="POST"
         >
 
             <input
-                type="text"
-                name="Name"
-                placeholder="YOUR NAME"
-                required
+                type="hidden"
+                name="_subject"
+                id="contactFormSubject"
+                value="ANURAG MULTIVERSE — New Contact"
             >
 
-            <input
-                type="text"
-                name="Subject"
-                id="contactSubject"
-                placeholder="SUBJECT"
-                required
-            >
+            <div class="form-group">
 
-            <textarea
-                name="Message"
-                placeholder="YOUR MESSAGE"
-                required
-            ></textarea>
+                <label for="contactName">
+                    YOUR NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="contactName"
+                    name="name"
+                    placeholder="Enter your name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="contactEmail">
+                    YOUR EMAIL
+                </label>
+
+                <input
+                    type="email"
+                    id="contactEmail"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="contactSubject">
+                    SUBJECT
+                </label>
+
+                <input
+                    type="text"
+                    id="contactSubject"
+                    name="subject"
+                    placeholder="What's this about?"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="contactMessage">
+                    MESSAGE
+                </label>
+
+                <textarea
+                    id="contactMessage"
+                    name="message"
+                    rows="7"
+                    placeholder="Write your message..."
+                    required
+                ></textarea>
+
+            </div>
 
             <button
                 type="submit"
-                class="btn primary"
+                id="contactSubmit"
+                class="btn primary contact-submit"
             >
                 SEND TRANSMISSION
             </button>
 
+            <div
+                id="contactStatus"
+                class="contact-status"
+                aria-live="polite"
+            ></div>
+
         </form>
-
-
-        <p
-            class="form-note"
-            style="margin-top:15px;"
-        >
-            Email connection can be added later without changing
-            the design of the website.
-        </p>
 
     </div>
 
+</section>
 
-    <div class="dharma-trigger">
+<!-- =========================
+     DHARMA PROTOCOL
+========================= -->
+
+<section class="dharma">
+
+    <div class="dharma-content">
+
+        <div class="dharma-label">
+            UNKNOWN SYSTEM // HIDDEN PROTOCOL
+        </div>
+
+        <h2>
+            DHARMA PROTOCOL
+        </h2>
+
+        <p>
+            Some things are not meant to be found immediately.
+            Explore the universe carefully.
+        </p>
 
         <button
             type="button"
-            class="secret-button"
             id="dharmaButton"
+            class="btn secondary"
         >
-            // UNKNOWN PROTOCOL
+            ACTIVATE PROTOCOL
         </button>
 
     </div>
@@ -2160,471 +2091,395 @@ footer {
 
 </main>
 
+<!-- =========================
+     DHARMA MODAL
+========================= -->
 
-<!-- =========================================================
-     DHARMA PROTOCOL
-========================================================= -->
+<div id="dharmaModal">
 
-<div id="dharmaMessage">
+    <div class="dharma-modal-content">
 
-    <div class="dharma-content">
+        <div class="protocol">
+            PROTOCOL // ACTIVATED
+        </div>
 
-        <small>
-            SYSTEM OVERRIDE
-        </small>
+        <div class="protocol-title">
+            DHARMA
+        </div>
 
-        <h2>
-            DHARMA PROTOCOL ACTIVATED
-        </h2>
+        <div class="protocol-line"></div>
 
-        <p>
+        <div class="protocol-message">
             कर्म पर ध्यान दो, परिणाम पर नहीं।
-        </p>
+        </div>
 
-        <br>
+        <p class="protocol-sub">
+            Create with purpose.<br>
+            Build with patience.<br>
+            Keep moving forward.
+        </p>
 
         <button
             type="button"
-            class="btn"
-            onclick="closeDharma()"
+            id="closeProtocol"
+            class="close-protocol"
         >
-            RETURN
+            RETURN TO MULTIVERSE
         </button>
 
     </div>
 
 </div>
 
-
-<!-- =========================================================
+<!-- =========================
      FOOTER
-========================================================= -->
+========================= -->
 
 <footer>
 
-    <div class="footer-name">
-        ANURAG SINGH
-    </div>
+    <span>
+        © 2026 ANURAG SINGH
+    </span>
 
-    <div class="footer-role">
+    <span>
         ARTIST • BUILDER • CREATOR
-    </div>
-
-    <div class="footer-end">
-        The journey continues.
-    </div>
-
-    <div class="footer-sanskrit">
-        ॥ हरि ॐ ॥
-    </div>
+    </span>
 
 </footer>
 
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
 <script>
 
-/* =========================================================
+/* =========================
    ELEMENTS
-========================================================= */
+========================= */
 
-const video =
-    document.getElementById("backgroundVideo");
+const video = document.getElementById("backgroundVideo");
+const audioGate = document.getElementById("audioGate");
+const loader = document.getElementById("loader");
 
-const audioGate =
-    document.getElementById("audioGate");
+const soundYes = document.getElementById("soundYes");
+const soundNo = document.getElementById("soundNo");
+const soundToggle = document.getElementById("soundToggle");
 
-const loader =
-    document.getElementById("loader");
-
-const yesButton =
-    document.getElementById("soundYes");
-
-const noButton =
-    document.getElementById("soundNo");
-
-const soundToggle =
-    document.getElementById("soundToggle");
-
-const dharmaButton =
-    document.getElementById("dharmaButton");
-
-const dharmaMessage =
-    document.getElementById("dharmaMessage");
-
-
-/* =========================================================
-   INITIAL VIDEO
-========================================================= */
-
-video.muted = true;
-video.volume = 1;
-
-
-/* =========================================================
-   ENTER EXPERIENCE
-========================================================= */
+/* =========================
+   AUDIO ENTRY
+========================= */
 
 function enterExperience(soundOn) {
 
-    /* Set sound */
     video.muted = !soundOn;
     video.volume = 1;
 
-    /* Unlock website */
     document.body.classList.remove("locked");
 
+    soundToggle.textContent = video.muted ? "🔇" : "🔊";
 
-    /* Hide entry screen */
     audioGate.style.opacity = "0";
     audioGate.style.visibility = "hidden";
     audioGate.style.pointerEvents = "none";
 
-
-    /* Show loader */
     loader.style.opacity = "1";
     loader.style.visibility = "visible";
     loader.style.pointerEvents = "auto";
 
-
-    /* Update sound icon */
-    soundToggle.textContent =
-        video.muted ? "🔇" : "🔊";
-
-
-    /* Start video */
     try {
 
         const playPromise = video.play();
 
         if (playPromise !== undefined) {
-
-            playPromise.catch(function(error) {
-
-                console.log(
-                    "Video playback issue:",
-                    error
-                );
-
-            });
-
+            playPromise.catch(() => {});
         }
 
-    } catch (error) {
+    } catch (error) {}
 
-        console.log(error);
-
-    }
-
-
-    /* Remove loader */
-    setTimeout(function() {
+    setTimeout(() => {
 
         loader.style.opacity = "0";
         loader.style.visibility = "hidden";
         loader.style.pointerEvents = "none";
 
     }, 2500);
-
 }
 
+soundYes.addEventListener("click", () => {
+    enterExperience(true);
+});
 
-/* =========================================================
-   YES
-========================================================= */
+soundNo.addEventListener("click", () => {
+    enterExperience(false);
+});
 
-yesButton.addEventListener(
-    "click",
-    function(event) {
-
-        event.preventDefault();
-
-        enterExperience(true);
-
-    }
-);
-
-
-/* =========================================================
-   NO
-========================================================= */
-
-noButton.addEventListener(
-    "click",
-    function(event) {
-
-        event.preventDefault();
-
-        enterExperience(false);
-
-    }
-);
-
-
-/* =========================================================
+/* =========================
    SOUND TOGGLE
-========================================================= */
+========================= */
 
-soundToggle.addEventListener(
-    "click",
-    function() {
+soundToggle.addEventListener("click", () => {
 
-        if (video.muted) {
+    video.muted = !video.muted;
 
-            video.muted = false;
+    soundToggle.textContent =
+        video.muted ? "🔇" : "🔊";
 
-            video.volume = 1;
+    if (!video.muted) {
 
-            soundToggle.textContent = "🔊";
+        try {
 
-            const playPromise =
-                video.play();
+            const playPromise = video.play();
 
             if (playPromise !== undefined) {
-
-                playPromise.catch(function() {});
-
+                playPromise.catch(() => {});
             }
 
-        } else {
-
-            video.muted = true;
-
-            soundToggle.textContent = "🔇";
-
-        }
+        } catch (error) {}
 
     }
-);
 
+});
 
-/* =========================================================
+/* =========================
    REQUEST SYSTEM
-========================================================= */
+========================= */
 
 function openRequest(type) {
 
-    const subject =
+    const contactSection =
+        document.getElementById("contact");
+
+    const subjectInput =
         document.getElementById("contactSubject");
 
-    subject.value = type;
+    subjectInput.value = type;
 
-    document
-        .getElementById("contact")
-        .scrollIntoView({
-            behavior: "smooth"
+    contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    setTimeout(() => {
+
+        document.getElementById("contactName").focus();
+
+    }, 700);
+}
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+const contactForm =
+    document.getElementById("contact-form");
+
+const contactStatus =
+    document.getElementById("contactStatus");
+
+const contactSubmit =
+    document.getElementById("contactSubmit");
+
+const contactFormSubject =
+    document.getElementById("contactFormSubject");
+
+contactForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const endpoint = contactForm.action;
+
+    if (
+        !endpoint ||
+        endpoint.includes("YOUR_FORMSPREE_ENDPOINT")
+    ) {
+
+        contactStatus.textContent =
+            "Setup incomplete: Add your Formspree endpoint first.";
+
+        contactStatus.className =
+            "contact-status error";
+
+        return;
+    }
+
+    const formData =
+        new FormData(contactForm);
+
+    contactSubmit.disabled = true;
+    contactSubmit.textContent = "TRANSMITTING...";
+
+    contactStatus.textContent = "";
+    contactStatus.className = "contact-status";
+
+    try {
+
+        const response = await fetch(endpoint, {
+
+            method: "POST",
+
+            body: formData,
+
+            headers: {
+                "Accept": "application/json"
+            }
+
         });
 
-}
+        if (response.ok) {
 
+            contactStatus.textContent =
+                "TRANSMISSION SENT ✓ — Your message has been delivered.";
 
-/* =========================================================
-   DHARMA
-========================================================= */
+            contactStatus.className =
+                "contact-status success";
 
-dharmaButton.addEventListener(
-    "click",
-    function() {
+            contactForm.reset();
 
-        dharmaMessage.classList.add("active");
+            contactFormSubject.value =
+                "ANURAG MULTIVERSE — New Contact";
 
-    }
-);
+        } else {
 
+            const data =
+                await response.json().catch(() => null);
 
-function closeDharma() {
+            let errorMessage =
+                "Transmission failed. Please try again.";
 
-    dharmaMessage.classList.remove("active");
+            if (
+                data &&
+                data.errors &&
+                data.errors.length
+            ) {
 
-}
+                errorMessage =
+                    data.errors
+                        .map(error => error.message)
+                        .join(" ");
 
+            }
 
-/* =========================================================
-   ESCAPE
-========================================================= */
+            contactStatus.textContent =
+                errorMessage;
 
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Escape") {
-
-            closeDharma();
-
+            contactStatus.className =
+                "contact-status error";
         }
 
+    } catch (error) {
+
+        contactStatus.textContent =
+            "Connection error. Please check your internet and try again.";
+
+        contactStatus.className =
+            "contact-status error";
+
     }
-);
 
+    contactSubmit.disabled = false;
+    contactSubmit.textContent =
+        "SEND TRANSMISSION";
 
-/* =========================================================
+});
+
+/* =========================
+   DHARMA PROTOCOL
+========================= */
+
+const dharmaButton =
+    document.getElementById("dharmaButton");
+
+const dharmaModal =
+    document.getElementById("dharmaModal");
+
+const closeProtocol =
+    document.getElementById("closeProtocol");
+
+dharmaButton.addEventListener("click", () => {
+
+    dharmaModal.classList.add("active");
+
+});
+
+closeProtocol.addEventListener("click", () => {
+
+    dharmaModal.classList.remove("active");
+
+});
+
+/* =========================
+   ESCAPE MODAL
+========================= */
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        dharmaModal.classList.remove("active");
+
+    }
+
+});
+
+/* =========================
    PARTICLES
-========================================================= */
-
-const canvas =
-    document.getElementById("particles");
-
-const ctx =
-    canvas.getContext("2d");
-
-let particles = [];
-
-
-function resizeCanvas() {
-
-    canvas.width =
-        window.innerWidth;
-
-    canvas.height =
-        window.innerHeight;
-
-}
-
-resizeCanvas();
-
-window.addEventListener(
-    "resize",
-    function() {
-
-        resizeCanvas();
-        createParticles();
-
-    }
-);
-
+========================= */
 
 function createParticles() {
 
-    particles = [];
-
     const amount =
-        window.innerWidth < 700
-            ? 45
-            : 90;
+        window.innerWidth < 600 ? 18 : 35;
 
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
+    for (let i = 0; i < amount; i++) {
 
-        particles.push({
+        const particle =
+            document.createElement("div");
 
-            x:
-                Math.random()
-                * canvas.width,
+        particle.className =
+            "particle";
 
-            y:
-                Math.random()
-                * canvas.height,
+        particle.style.left =
+            Math.random() * 100 + "%";
 
-            size:
-                Math.random()
-                * 1.5 + .3,
+        particle.style.animationDuration =
+            (12 + Math.random() * 18) + "s";
 
-            speed:
-                Math.random()
-                * .25 + .05,
+        particle.style.animationDelay =
+            (-Math.random() * 20) + "s";
 
-            opacity:
-                Math.random()
-                * .5 + .1
+        particle.style.opacity =
+            (0.15 + Math.random() * 0.45).toString();
 
-        });
-
+        document.body.appendChild(particle);
     }
-
 }
 
 createParticles();
 
+/* =========================
+   VIDEO ERROR HANDLING
+========================= */
 
-function drawParticles() {
+video.addEventListener("error", () => {
 
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
+    console.warn(
+        "krishna-edit.mp4 could not be loaded."
     );
 
+});
 
-    particles.forEach(
-        function(p) {
+/* =========================
+   INITIAL VIDEO STATE
+========================= */
 
-            p.y -= p.speed;
+video.muted = true;
 
-            if (p.y < 0) {
+try {
 
-                p.y =
-                    canvas.height;
+    const initialPlay =
+        video.play();
 
-            }
-
-
-            ctx.beginPath();
-
-            ctx.arc(
-                p.x,
-                p.y,
-                p.size,
-                0,
-                Math.PI * 2
-            );
-
-            ctx.fillStyle =
-                "rgba(255,255,255," +
-                p.opacity +
-                ")";
-
-            ctx.fill();
-
-        }
-    );
-
-
-    requestAnimationFrame(
-        drawParticles
-    );
-
-}
-
-drawParticles();
-
-
-/* =========================================================
-   VIDEO ERROR
-========================================================= */
-
-video.addEventListener(
-    "error",
-    function() {
-
-        console.log(
-            "krishna-edit.mp4 could not be loaded."
-        );
-
+    if (initialPlay !== undefined) {
+        initialPlay.catch(() => {});
     }
-);
 
-
-/* =========================================================
-   READY
-========================================================= */
-
-window.addEventListener(
-    "load",
-    function() {
-
-        console.log(
-            "ANURAG MULTIVERSE READY."
-        );
-
-    }
-);
+} catch (error) {}
 
 </script>
 
