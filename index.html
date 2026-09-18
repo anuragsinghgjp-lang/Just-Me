@@ -3,1379 +3,1944 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#030305">
 
 <title>ANURAG — THE MULTIVERSE</title>
 
+<meta name="description" content="ANURAG SINGH — Artist, Builder and Creator. Enter the Multiverse.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* =========================================================
+   RESET
+========================================================= */
 
-/* =========================
-   BASIC
-========================= */
-
-:root{
-  --bg:#030305;
-  --gold:#d7b56d;
-  --gold2:#f4dfab;
-  --white:#f5f5f5;
-  --muted:#9999a3;
-  --border:rgba(255,255,255,.12);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+html {
+    scroll-behavior: smooth;
 }
 
-html{
-  scroll-behavior:smooth;
+body {
+    background: #030305;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
 }
 
-body{
-  background:var(--bg);
-  color:var(--white);
-  font-family:Inter,Arial,sans-serif;
-  overflow-x:hidden;
-}
-
-body.locked{
-  overflow:hidden;
+body.locked {
+    overflow: hidden;
 }
 
 button,
+a,
 input,
-textarea{
-  font:inherit;
+textarea {
+    font-family: inherit;
 }
 
-button{
-  cursor:pointer;
-}
-
-
-/* =========================
+/* =========================================================
    BACKGROUND VIDEO
-========================= */
+========================================================= */
 
-.video-bg{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-10;
-  background:#030305;
-  filter:brightness(.35) saturate(.8);
+.video-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -10;
+    opacity: 0.62;
+    background: #030305;
 }
 
-.video-overlay{
-  position:fixed;
-  inset:0;
-  z-index:-9;
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(215,181,109,.12),
-      transparent 30%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(0,0,0,.5),
-      rgba(0,0,0,.92)
-    );
+.video-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -9;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.25) 40%,
+            rgba(0,0,0,0.85)
+        );
+    pointer-events: none;
 }
 
-#particles{
-  position:fixed;
-  inset:0;
-  z-index:-5;
-  pointer-events:none;
+.cosmic-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -8;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,255,255,0.06),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255,190,80,0.06),
+            transparent 30%
+        );
+    pointer-events: none;
 }
 
+/* =========================================================
+   PARTICLES
+========================================================= */
 
-/* =========================
-   GRAIN
-========================= */
-
-.grain{
-  position:fixed;
-  inset:0;
-  z-index:80;
-  pointer-events:none;
-  opacity:.035;
-  background-image:url(
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"
-  );
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    pointer-events: none;
 }
 
-
-/* =========================
+/* =========================================================
    AUDIO GATE
-========================= */
+========================================================= */
 
-.audio-gate{
-  position:fixed;
-  inset:0;
-  z-index:1000;
+#audioGate {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  padding:20px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(45,35,20,0.25),
+            rgba(0,0,0,0.98) 70%
+        );
 
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(115,85,255,.08),
-      transparent 35%
-    ),
-    #020204;
-
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-
-  transition:
-    opacity .8s ease,
-    visibility .8s ease;
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
 }
 
-.audio-gate.hidden{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+.audio-box {
+    width: min(92%, 620px);
+    text-align: center;
+    padding: 50px 30px;
 }
 
-.gate-box{
-  width:min(680px,100%);
-  text-align:center;
+.audio-small {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 20px;
 }
 
-.gate-small{
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:5px;
-  margin-bottom:22px;
+.audio-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(48px, 10vw, 90px);
+    font-weight: 800;
+    letter-spacing: 12px;
 }
 
-.gate-title{
-  font-family:Montserrat,sans-serif;
-  font-size:clamp(55px,12vw,110px);
-  font-weight:800;
-  line-height:.85;
-  letter-spacing:-5px;
+.audio-subtitle {
+    margin-top: 5px;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,0.65);
 }
 
-.gate-subtitle{
-  margin-top:18px;
-  color:#aaaab2;
-  font-size:12px;
-  letter-spacing:5px;
+.audio-line {
+    width: 120px;
+    height: 1px;
+    margin: 35px auto;
+    background: rgba(255,255,255,0.45);
 }
 
-.sanskrit{
-  margin:28px 0 35px;
-  color:var(--gold2);
-  font-size:20px;
-  letter-spacing:2px;
+.audio-question {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
 }
 
-.audio-question{
-  color:#c1c1c8;
-  font-size:14px;
-  margin-bottom:20px;
+.audio-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
 }
 
-.audio-buttons{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.audio-btn {
+    min-width: 180px;
+    padding: 15px 24px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.06);
+    color: white;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
 }
 
-.audio-btn{
-  min-width:170px;
-  padding:14px 22px;
-
-  border:1px solid var(--border);
-  border-radius:100px;
-
-  background:rgba(255,255,255,.05);
-  color:white;
-
-  transition:.3s;
+.audio-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.6);
 }
 
-.audio-btn:hover{
-  transform:translateY(-3px);
-  border-color:var(--gold);
-  background:rgba(215,181,109,.1);
+.audio-btn.primary {
+    background: rgba(255,255,255,0.14);
 }
 
-.audio-btn.primary{
-  border-color:rgba(215,181,109,.55);
-  background:rgba(215,181,109,.14);
+.audio-note {
+    margin-top: 25px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
 }
 
-.gate-note{
-  margin-top:18px;
-  color:#5d5d66;
-  font-size:10px;
-}
-
-
-/* =========================
+/* =========================================================
    LOADER
-========================= */
+========================================================= */
 
-.loader{
-  position:fixed;
-  inset:0;
-  z-index:900;
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 4000;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  background:#020203;
+    background: #030305;
 
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 
-  transition:
-    opacity 1s ease,
-    visibility 1s ease;
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
 }
 
-.loader.active{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
+.loader-content {
+    text-align: center;
 }
 
-.loader.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+.loader-text {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(17px, 4vw, 30px);
+    letter-spacing: 5px;
+    font-weight: 600;
 }
 
-.loader-inner{
-  width:min(600px,90%);
-  text-align:center;
+.loader-line {
+    width: 0;
+    height: 1px;
+    margin: 25px auto 0;
+    background: white;
+    animation: loaderLine 2.2s ease forwards;
 }
 
-.loader-text{
-  font-size:clamp(12px,2vw,18px);
-  font-weight:600;
-  letter-spacing:5px;
+@keyframes loaderLine {
+    to {
+        width: 220px;
+    }
 }
 
-.loader-line{
-  width:190px;
-  height:1px;
-  margin:25px auto 0;
-  background:rgba(255,255,255,.15);
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(92%, 1050px);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 18px;
+
+    background: rgba(10,10,14,0.48);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+
+    z-index: 1000;
 }
 
-.loader-progress{
-  width:0;
-  height:100%;
-  background:var(--gold);
+.logo {
+    color: white;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 3px;
 }
 
-.loader.active .loader-progress{
-  animation:loading 2.4s ease forwards;
+.nav-links {
+    display: flex;
+    gap: 22px;
+    align-items: center;
 }
 
-@keyframes loading{
-  0%{width:0}
-  100%{width:100%}
+.nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
-
-.nav{
-  position:fixed;
-  top:18px;
-  left:50%;
-  transform:translateX(-50%);
-
-  width:min(1100px,calc(100% - 30px));
-
-  padding:12px 15px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  border:1px solid var(--border);
-  border-radius:18px;
-
-  background:rgba(7,7,10,.62);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-
-  z-index:100;
+.nav-links a:hover {
+    color: white;
 }
 
-.logo{
-  color:white;
-  text-decoration:none;
+.sound-toggle {
+    width: 34px;
+    height: 34px;
 
-  font-family:Montserrat,sans-serif;
-  font-size:14px;
-  font-weight:800;
-  letter-spacing:2px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.18);
+
+    background: rgba(255,255,255,0.06);
+    color: white;
+
+    cursor: pointer;
 }
 
-.logo span{
-  color:var(--gold);
+/* =========================================================
+   GENERAL
+========================================================= */
+
+main {
+    position: relative;
+    z-index: 2;
 }
 
-.nav-links{
-  display:flex;
-  gap:5px;
+section {
+    width: min(1100px, 92%);
+    margin: auto;
+    padding: 120px 0;
 }
 
-.nav-links a{
-  color:#aaaab2;
-  text-decoration:none;
-
-  font-size:11px;
-  padding:9px 11px;
-
-  border-radius:10px;
-
-  transition:.25s;
+.section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 18px;
 }
 
-.nav-links a:hover{
-  color:white;
-  background:rgba(255,255,255,.07);
+.section-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(34px, 7vw, 68px);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
 }
 
-.sound-toggle{
-  width:38px;
-  height:34px;
-
-  border:1px solid var(--border);
-  border-radius:10px;
-
-  background:rgba(255,255,255,.05);
-  color:white;
+.section-text {
+    max-width: 680px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.9;
+    font-size: 15px;
 }
 
-
-/* =========================
-   SECTIONS
-========================= */
-
-main{
-  position:relative;
-  z-index:2;
-}
-
-section{
-  width:min(1100px,calc(100% - 35px));
-  margin:auto;
-  padding:120px 0;
-}
-
-
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
-.hero{
-  min-height:100vh;
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-  padding-top:100px;
+    text-align: center;
+    padding: 120px 20px 80px;
 }
 
-.hero-content{
-  max-width:1000px;
+.hero-content {
+    max-width: 1000px;
 }
 
-.system-label{
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:5px;
-  margin-bottom:25px;
+.hero-kicker {
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px;
 }
 
-.hero h1{
-  font-family:Montserrat,sans-serif;
-  font-size:clamp(60px,14vw,155px);
-  font-weight:800;
-  line-height:.82;
-  letter-spacing:-8px;
+.hero h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(65px, 15vw, 180px);
+    line-height: 0.88;
+    font-weight: 800;
+    letter-spacing: -8px;
 }
 
-.hero h1 span{
-  display:block;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(255,255,255,.45);
+.hero-subtitle {
+    margin-top: 28px;
+    font-size: clamp(14px, 2vw, 18px);
+    letter-spacing: 7px;
+    color: rgba(255,255,255,0.68);
 }
 
-.hero-tagline{
-  max-width:650px;
-  margin:32px auto 0;
-
-  color:#b8b8c1;
-  font-size:14px;
-  line-height:1.8;
+.sanskrit {
+    margin-top: 35px;
+    font-size: 22px;
+    color: rgba(255,255,255,0.82);
 }
 
-.hero-actions{
-  margin-top:32px;
-
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.hero-description {
+    max-width: 650px;
+    margin: 28px auto 0;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+    font-size: 14px;
 }
 
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:13px 21px;
-
-  border:1px solid var(--border);
-  border-radius:100px;
-
-  color:white;
-  text-decoration:none;
-  background:rgba(255,255,255,.05);
-
-  font-size:12px;
-
-  transition:.3s;
+.hero-buttons {
+    margin-top: 38px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-.btn:hover{
-  transform:translateY(-3px);
-  border-color:var(--gold);
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 24px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.06);
+    color: white;
+
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+
+    transition: 0.3s ease;
 }
 
-.btn-gold{
-  background:rgba(215,181,109,.14);
-  border-color:rgba(215,181,109,.5);
+.btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.14);
 }
 
-.scroll-indicator{
-  position:absolute;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%);
-
-  color:#686870;
-  font-size:9px;
-  letter-spacing:4px;
+.btn.primary {
+    background: white;
+    color: black;
 }
 
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
 
-/* =========================
-   SECTION HEAD
-========================= */
+.scroll-indicator {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
 
-.section-head{
-  margin-bottom:35px;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.4);
 }
 
-.eyebrow{
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:5px;
-  margin-bottom:12px;
-}
-
-.section-title{
-  font-family:Montserrat,sans-serif;
-  font-size:clamp(34px,6vw,65px);
-  letter-spacing:-2px;
-}
-
-.section-description{
-  max-width:650px;
-  margin-top:15px;
-
-  color:#9999a3;
-  line-height:1.8;
-}
-
-
-/* =========================
+/* =========================================================
    ABOUT
-========================= */
+========================================================= */
 
-.about-card{
-  position:relative;
-  overflow:hidden;
+.about-box {
+    position: relative;
 
-  padding:35px;
+    padding: 55px;
 
-  border:1px solid var(--border);
-  border-radius:25px;
+    background: rgba(10,10,14,0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
-  background:rgba(255,255,255,.045);
-  backdrop-filter:blur(16px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
 }
 
-.about-card::before{
-  content:"";
-
-  position:absolute;
-
-  width:300px;
-  height:300px;
-
-  right:-150px;
-  top:-150px;
-
-  border:1px solid rgba(215,181,109,.15);
-  border-radius:50%;
-
-  box-shadow:
-    0 0 0 35px rgba(215,181,109,.025),
-    0 0 0 70px rgba(215,181,109,.018);
+.identity {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
 }
 
-.identity{
-  color:#777780;
-  font-size:10px;
-  letter-spacing:4px;
+.identity-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 27px;
+    margin-bottom: 18px;
 }
 
-.about-name{
-  margin:12px 0;
-
-  font-family:Montserrat,sans-serif;
-  font-size:clamp(28px,5vw,52px);
-  line-height:1.05;
+.identity-text {
+    color: rgba(255,255,255,0.6);
+    line-height: 1.9;
+    font-size: 14px;
 }
 
-.about-role{
-  color:var(--gold2);
-  font-size:11px;
-  letter-spacing:3px;
+.about-quote {
+    margin-top: 45px;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(22px, 4vw, 38px);
+    line-height: 1.25;
 }
 
-.about-text{
-  max-width:750px;
-  margin-top:25px;
-
-  color:#b0b0b8;
-  line-height:1.9;
+.about-sanskrit {
+    margin-top: 18px;
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
 }
 
-.about-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-
-  margin-top:30px;
-}
-
-.mini-card{
-  padding:22px;
-
-  border:1px solid var(--border);
-  border-radius:18px;
-
-  background:rgba(0,0,0,.18);
-}
-
-.mini-card h3{
-  font-size:13px;
-  letter-spacing:2px;
-  margin-bottom:10px;
-}
-
-.mini-card p{
-  color:#8f8f98;
-  font-size:12px;
-  line-height:1.7;
-}
-
-.sanskrit-line{
-  margin-top:30px;
-
-  color:var(--gold);
-  font-size:13px;
-  letter-spacing:3px;
-}
-
-
-/* =========================
+/* =========================================================
    REALMS
-========================= */
+========================================================= */
 
-.realm-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
+.realms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
 }
 
-.realm{
-  position:relative;
-  overflow:hidden;
+.realm {
+    min-height: 310px;
 
-  min-height:310px;
-  padding:28px;
+    padding: 30px;
 
-  border:1px solid var(--border);
-  border-radius:24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.06),
-      rgba(255,255,255,.018)
-    );
+    border: 1px solid rgba(255,255,255,0.11);
+    border-radius: 25px;
 
-  transition:.4s;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.025)
+        );
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition: 0.45s ease;
 }
 
-.realm:hover{
-  transform:translateY(-8px);
-  border-color:rgba(215,181,109,.38);
-  box-shadow:0 20px 70px rgba(0,0,0,.3);
+.realm:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255,255,255,0.3);
 }
 
-.realm-number{
-  color:#666670;
-  font-size:10px;
-  letter-spacing:3px;
+.realm-number {
+    position: absolute;
+    opacity: 0;
 }
 
-.realm-icon{
-  margin:35px 0 20px;
-  font-size:38px;
+.realm-icon {
+    font-size: 26px;
+    margin-bottom: auto;
 }
 
-.realm h3{
-  font-family:Montserrat,sans-serif;
-  font-size:21px;
-  margin-bottom:12px;
+.realm h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 22px;
+    margin-bottom: 12px;
 }
 
-.realm p{
-  color:#92929c;
-  font-size:12px;
-  line-height:1.8;
+.realm p {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    line-height: 1.7;
 }
 
-.realm-link{
-  position:absolute;
-  bottom:25px;
+/* =========================================================
+   SKILLS
+========================================================= */
 
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:2px;
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
 }
 
+.skill {
+    padding: 28px;
 
-/* =========================
-   ANURAG SYSTEM
-========================= */
-
-.system-box{
-  padding:35px;
-
-  border:1px solid rgba(215,181,109,.18);
-  border-radius:25px;
-
-  background:
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(139,108,255,.08),
-      transparent 30%
-    ),
-    rgba(255,255,255,.035);
+    background: rgba(10,10,14,0.42);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
 }
 
-.system-status{
-  display:flex;
-  align-items:center;
-  gap:8px;
-
-  color:#8e8e98;
-  font-size:10px;
-  letter-spacing:3px;
+.skill h3 {
+    margin-bottom: 10px;
+    font-family: "Montserrat", sans-serif;
 }
 
-.status-dot{
-  width:6px;
-  height:6px;
-
-  border-radius:50%;
-
-  background:#8cffb0;
-  box-shadow:0 0 12px #8cffb0;
+.skill p {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    line-height: 1.8;
 }
 
-.system-options{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-
-  margin-top:28px;
-}
-
-.system-option{
-  border:1px solid var(--border);
-  border-radius:18px;
-
-  padding:23px;
-
-  background:rgba(0,0,0,.18);
-
-  color:white;
-  text-align:left;
-
-  transition:.3s;
-}
-
-.system-option:hover{
-  transform:translateY(-4px);
-  border-color:rgba(215,181,109,.45);
-}
-
-.system-option h3{
-  font-size:14px;
-  margin-bottom:9px;
-}
-
-.system-option p{
-  color:#81818b;
-  font-size:11px;
-  line-height:1.7;
-}
-
-
-/* =========================
-   FORMS
-========================= */
-
-.request-panel{
-  display:none;
-
-  margin-top:25px;
-  padding:25px;
-
-  border:1px solid var(--border);
-  border-radius:20px;
-
-  background:rgba(0,0,0,.2);
-}
-
-.request-panel.active{
-  display:block;
-  animation:fadeUp .4s ease;
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(12px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-.field{
-  margin-bottom:14px;
-}
-
-.field label{
-  display:block;
-
-  margin-bottom:7px;
-
-  color:#9999a2;
-  font-size:10px;
-  letter-spacing:2px;
-}
-
-.field input,
-.field textarea{
-  width:100%;
-
-  padding:12px 14px;
-
-  outline:none;
-
-  border:1px solid var(--border);
-  border-radius:12px;
-
-  background:rgba(255,255,255,.045);
-  color:white;
-}
-
-.field textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-.field input:focus,
-.field textarea:focus{
-  border-color:rgba(215,181,109,.55);
-}
-
-.submit-btn{
-  padding:12px 20px;
-
-  border:1px solid rgba(215,181,109,.4);
-  border-radius:100px;
-
-  background:rgba(215,181,109,.1);
-  color:white;
-}
-
-
-/* =========================
+/* =========================================================
    YOUTUBE
-========================= */
+========================================================= */
 
-.creator-box{
-  padding:60px 25px;
+.youtube-box {
+    padding: 65px 40px;
+    text-align: center;
 
-  border:1px solid var(--border);
-  border-radius:25px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.02)
+        );
 
-  background:rgba(255,255,255,.035);
-
-  text-align:center;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px;
 }
 
-.creator-box h2{
-  font-family:Montserrat,sans-serif;
-  font-size:clamp(30px,6vw,60px);
+.youtube-box h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(32px, 7vw, 70px);
+    margin-bottom: 15px;
 }
 
-.creator-box p{
-  max-width:550px;
-  margin:15px auto 25px;
-
-  color:#9999a2;
-  line-height:1.8;
+.youtube-box p {
+    color: rgba(255,255,255,0.55);
+    max-width: 550px;
+    margin: auto;
+    line-height: 1.8;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  width:min(1100px,calc(100% - 35px));
-  margin:auto;
-
-  padding:70px 0 35px;
-
-  border-top:1px solid rgba(255,255,255,.07);
-
-  text-align:center;
+.youtube-box .btn {
+    margin-top: 30px;
 }
 
-.footer-name{
-  font-family:Montserrat,sans-serif;
-  font-size:25px;
-  letter-spacing:4px;
+/* =========================================================
+   ANURAG SYSTEM
+========================================================= */
+
+.system-box {
+    padding: 50px;
+
+    background: rgba(5,5,8,0.7);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+
+    position: relative;
+    overflow: hidden;
 }
 
-.footer-role{
-  margin-top:10px;
+.system-box::before {
+    content: "";
 
-  color:#777780;
-  font-size:10px;
-  letter-spacing:3px;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+
+    top: -150px;
+    right: -150px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
 }
 
-.footer-dharma{
-  margin-top:30px;
+.system-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  color:var(--gold);
-  font-size:11px;
-  letter-spacing:3px;
+    margin-bottom: 35px;
 }
 
-.copyright{
-  margin-top:25px;
-
-  color:#4d4d55;
-  font-size:9px;
+.system-status {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.45);
 }
 
+.system-status::before {
+    content: "● ";
+    color: white;
+}
 
-/* =========================
+.request-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.request-card {
+    padding: 25px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.035);
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.request-card:hover {
+    background: rgba(255,255,255,0.09);
+    transform: translateY(-4px);
+}
+
+.request-card span {
+    display: block;
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.request-card h3 {
+    font-size: 16px;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-box {
+    max-width: 800px;
+    margin: auto;
+}
+
+form {
+    display: grid;
+    gap: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+
+    padding: 16px 18px;
+
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.12);
+
+    background: rgba(255,255,255,0.045);
+    color: white;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: rgba(255,255,255,0.4);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-note {
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* =========================================================
    DHARMA PROTOCOL
-========================= */
+========================================================= */
 
-.dharma-trigger{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-
-  z-index:150;
-
-  width:34px;
-  height:34px;
-
-  border:1px solid rgba(215,181,109,.15);
-  border-radius:50%;
-
-  background:rgba(0,0,0,.3);
-
-  color:rgba(215,181,109,.3);
-
-  transition:.3s;
+.dharma-trigger {
+    text-align: center;
+    margin-top: 80px;
 }
 
-.dharma-trigger:hover{
-  color:var(--gold);
-  border-color:rgba(215,181,109,.5);
+.secret-button {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.18);
+    font-size: 9px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: 0.4s;
 }
 
-.dharma-screen{
-  position:fixed;
-  inset:0;
-
-  z-index:2000;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:25px;
-
-  text-align:center;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(215,181,109,.15),
-      transparent 30%
-    ),
-    #030305;
-
-  opacity:0;
-  visibility:hidden;
-
-  transition:.7s;
+.secret-button:hover {
+    color: rgba(255,255,255,0.6);
 }
 
-.dharma-screen.active{
-  opacity:1;
-  visibility:visible;
+#dharmaMessage {
+    position: fixed;
+    inset: 0;
+
+    z-index: 3000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0,0,0,0.94);
+    backdrop-filter: blur(20px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: 0.8s;
 }
 
-.dharma-inner h2{
-  font-family:Montserrat,sans-serif;
-  font-size:clamp(30px,7vw,70px);
+#dharmaMessage.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
-.dharma-inner p{
-  margin-top:20px;
-
-  color:#aaaab2;
-  line-height:1.8;
+.dharma-content {
+    text-align: center;
+    padding: 30px;
 }
 
-.close-dharma{
-  margin-top:30px;
-
-  padding:11px 20px;
-
-  border:1px solid var(--border);
-  border-radius:100px;
-
-  background:rgba(255,255,255,.05);
-  color:white;
+.dharma-content small {
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,0.4);
 }
 
+.dharma-content h2 {
+    margin: 25px 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(30px, 7vw, 65px);
+}
 
-/* =========================
+.dharma-content p {
+    color: rgba(255,255,255,0.6);
+    font-size: 18px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 100px 20px 40px;
+    text-align: center;
+}
+
+.footer-name {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(40px, 8vw, 85px);
+    font-weight: 800;
+}
+
+.footer-role {
+    margin-top: 15px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.45);
+}
+
+.footer-end {
+    margin-top: 50px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+}
+
+.footer-sanskrit {
+    margin-top: 18px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+}
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media(max-width:800px){
+@media (max-width: 800px) {
 
-  .nav{
-    top:10px;
-  }
+    .navbar {
+        top: 10px;
+        padding: 12px 14px;
+    }
 
-  .nav-links{
-    display:none;
-  }
+    .nav-links {
+        display: none;
+    }
 
-  .hero h1{
-    letter-spacing:-5px;
-  }
+    .hero h1 {
+        letter-spacing: -5px;
+    }
 
-  section{
-    padding:85px 0;
-  }
+    section {
+        padding: 90px 0;
+    }
 
-  .about-grid,
-  .realm-grid,
-  .system-options{
-    grid-template-columns:1fr;
-  }
+    .about-box {
+        padding: 30px;
+    }
 
-  .about-card,
-  .system-box{
-    padding:24px;
-  }
+    .identity {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 
-  .realm{
-    min-height:250px;
-  }
+    .realms {
+        grid-template-columns: 1fr;
+    }
 
-  .gate-title{
-    letter-spacing:-3px;
-  }
+    .realm {
+        min-height: 250px;
+    }
+
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .request-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .system-box {
+        padding: 30px 20px;
+    }
+
+    .youtube-box {
+        padding: 50px 25px;
+    }
+
+    .audio-box {
+        padding: 30px 20px;
+    }
+
+    .audio-title {
+        letter-spacing: 7px;
+    }
 }
-
 </style>
 </head>
 
-
 <body class="locked">
 
-
-<!-- =========================
+<!-- =======================================================
      BACKGROUND VIDEO
-========================= -->
+======================================================== -->
 
 <video
-  class="video-bg"
-  id="backgroundVideo"
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="auto">
-
-  <source
-    src="krishna-edit.mp4"
-    type="video/mp4">
-
+    id="backgroundVideo"
+    class="video-bg"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+>
+    <source src="krishna-edit.mp4" type="video/mp4">
 </video>
 
 <div class="video-overlay"></div>
-<div class="grain"></div>
+<div class="cosmic-overlay"></div>
 
 <canvas id="particles"></canvas>
 
+<!-- =======================================================
+     AUDIO GATE
+======================================================== -->
 
-<!-- =========================
-     AUDIO ENTRY SCREEN
-========================= -->
+<div id="audioGate">
 
-<div class="audio-gate" id="audioGate">
+    <div class="audio-box">
 
-  <div class="gate-box">
+        <div class="audio-small">
+            ANURAG PRESENTS
+        </div>
 
-    <div class="gate-small">
-      ANURAG SYSTEM // ENTRY
+        <div class="audio-title">
+            ANURAG
+        </div>
+
+        <div class="audio-subtitle">
+            THE MULTIVERSE
+        </div>
+
+        <div class="audio-line"></div>
+
+        <div class="audio-question">
+            Would you like to experience<br>
+            this website with sound?
+        </div>
+
+        <div class="audio-buttons">
+
+            <button
+                type="button"
+                id="soundYes"
+                class="audio-btn primary"
+            >
+                🔊 YES, ENTER
+            </button>
+
+            <button
+                type="button"
+                id="soundNo"
+                class="audio-btn"
+            >
+                🔇 NO, ENTER
+            </button>
+
+        </div>
+
+        <div class="audio-note">
+            Sound can be changed anytime.
+        </div>
+
     </div>
-
-    <div class="gate-title">
-      ANURAG
-    </div>
-
-    <div class="gate-subtitle">
-      THE MULTIVERSE
-    </div>
-
-    <div class="sanskrit">
-      कर्मण्येवाधिकारस्ते
-    </div>
-
-    <div class="audio-question">
-      Would you like to experience this website with sound?
-    </div>
-
-    <div class="audio-buttons">
-
-      <button
-        type="button"
-        class="audio-btn primary"
-        id="soundYes">
-
-        🔊 YES, ENTER
-
-      </button>
-
-      <button
-        type="button"
-        class="audio-btn"
-        id="soundNo">
-
-        🔇 NO, ENTER
-
-      </button>
-
-    </div>
-
-    <div class="gate-note">
-      Sound can be changed anytime
-    </div>
-
-  </div>
 
 </div>
 
-
-<!-- =========================
+<!-- =======================================================
      LOADER
-========================= -->
+======================================================== -->
 
-<div class="loader" id="loader">
+<div id="loader">
 
-  <div class="loader-inner">
+    <div class="loader-content">
 
-    <div class="loader-text">
-      THIS IS WHERE THE LEGEND BEGINS.
+        <div class="loader-text">
+            THIS IS WHERE THE LEGEND BEGINS.
+        </div>
+
+        <div class="loader-line"></div>
+
     </div>
-
-    <div class="loader-line">
-      <div class="loader-progress"></div>
-    </div>
-
-  </div>
 
 </div>
 
+<!-- =======================================================
+     NAVBAR
+======================================================== -->
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<nav class="navbar">
 
-<nav class="nav">
+    <a href="#home" class="logo">
+        ANURAG
+    </a>
 
-  <a href="#home" class="logo">
-    ANURAG<span>.</span>
-  </a>
+    <div class="nav-links">
+        <a href="#about">ABOUT</a>
+        <a href="#realms">REALMS</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#system">SYSTEM</a>
+        <a href="#contact">CONTACT</a>
+    </div>
 
-  <div class="nav-links">
-
-    <a href="#about">ABOUT</a>
-    <a href="#realms">REALMS</a>
-    <a href="#system">SYSTEM</a>
-    <a href="#youtube">YOUTUBE</a>
-
-  </div>
-
-  <button
-    type="button"
-    class="sound-toggle"
-    id="soundToggle">
-
-    🔇
-
-  </button>
+    <button
+        type="button"
+        class="sound-toggle"
+        id="soundToggle"
+        title="Toggle sound"
+    >
+        🔇
+    </button>
 
 </nav>
 
-
-<!-- =========================
+<!-- =======================================================
      MAIN
-========================= -->
+======================================================== -->
 
 <main>
-
 
 <!-- HERO -->
 
 <section class="hero" id="home">
 
-  <div class="hero-content">
+    <div class="hero-content">
 
-    <div class="system-label">
-      SYSTEM ONLINE // REALMS DETECTED: 03
+        <div class="hero-kicker">
+            REALMS DETECTED // 03
+        </div>
+
+        <h1>
+            ANURAG
+        </h1>
+
+        <div class="hero-subtitle">
+            THE MULTIVERSE
+        </div>
+
+        <div class="sanskrit">
+            कर्मण्येवाधिकारस्ते
+        </div>
+
+        <p class="hero-description">
+            One identity. Multiple worlds.
+            Art, technology, creativity and endless ideas —
+            all connected inside one universe.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#realms" class="btn primary">
+                ENTER THE REALMS
+            </a>
+
+            <a
+                href="https://www.youtube.com/@satoru_strokes7"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+            >
+                YOUTUBE
+            </a>
+
+        </div>
+
     </div>
 
-    <h1>
-      ANURAG
-      <span>MULTIVERSE</span>
-    </h1>
-
-    <p class="hero-tagline">
-      Artist. Builder. Creator.
-      <br>
-      One identity. Multiple worlds.
-    </p>
-
-    <div class="hero-actions">
-
-      <a
-        href="#realms"
-        class="btn btn-gold">
-
-        ENTER THE REALMS
-
-      </a>
-
-      <a
-        href="https://www.youtube.com/@satoru_strokes7"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn">
-
-        WATCH ON YOUTUBE ↗
-
-      </a>
-
+    <div class="scroll-indicator">
+        SCROLL TO EXPLORE
     </div>
-
-  </div>
-
-  <div class="scroll-indicator">
-    SCROLL TO EXPLORE
-  </div>
 
 </section>
 
-
-<!-- =========================
-     ABOUT
-========================= -->
+<!-- ABOUT -->
 
 <section id="about">
 
-  <div class="section-head">
-
-    <div class="eyebrow">
-      IDENTITY FILE // 001
+    <div class="section-label">
+        01 // IDENTITY FILE
     </div>
 
-    <h2 class="section-title">
-      ABOUT
-    </h2>
-
-    <p class="section-description">
-      Not a normal portfolio. This is a digital identity built around
-      creativity, curiosity and constant learning.
-    </p>
-
-  </div>
-
-
-  <div class="about-card">
-
-    <div class="identity">
-      IDENTITY // ANURAG SINGH
+    <div class="section-title">
+        ABOUT
     </div>
 
-    <div class="about-name">
-      I DON'T LIKE<br>
-      STAYING IN ONE WORLD.
+    <div class="about-box">
+
+        <div class="identity">
+
+            <div>
+                <div class="identity-title">
+                    ANURAG SINGH
+                </div>
+
+                <p class="identity-text">
+                    I don't like staying in one world.
+                    I like creating them.
+                </p>
+
+                <br>
+
+                <p class="identity-text">
+                    I'm an artist, builder and creator exploring
+                    different forms of creativity — from anime art
+                    and visual ideas to coding, Minecraft development
+                    and digital projects.
+                </p>
+            </div>
+
+            <div>
+
+                <div class="identity-title">
+                    THREE DIRECTIONS
+                </div>
+
+                <p class="identity-text">
+                    <strong>CREATE</strong><br>
+                    Anime, drawings and visual creativity.
+                </p>
+
+                <br>
+
+                <p class="identity-text">
+                    <strong>BUILD</strong><br>
+                    Coding, Minecraft server development,
+                    plugins, configurations and digital systems.
+                </p>
+
+                <br>
+
+                <p class="identity-text">
+                    <strong>CREATE AGAIN</strong><br>
+                    YouTube, edits, ideas and content.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="about-quote">
+            Still learning.<br>
+            Still building.<br>
+            Still creating.
+        </div>
+
+        <div class="about-sanskrit">
+            कर्मण्येवाधिकारस्ते
+        </div>
+
     </div>
-
-    <div class="about-role">
-      CREATOR • ARTIST • BUILDER
-    </div>
-
-    <p class="about-text">
-      I create, experiment and build things across different worlds.
-      From anime-inspired artwork and visual ideas to coding,
-      digital projects and Minecraft server development.
-      This multiverse is a collection of what I create, learn and explore.
-    </p>
-
-
-    <div class="about-grid">
-
-      <div class="mini-card">
-
-        <h3>CREATE</h3>
-
-        <p>
-          Anime, drawings, digital art and visual concepts
-          turned from ideas into something real.
-        </p>
-
-      </div>
-
-
-      <div class="mini-card">
-
-        <h3>BUILD</h3>
-
-        <p>
-          Coding, Minecraft server development, plugins,
-          configurations and digital projects.
-        </p>
-
-      </div>
-
-
-      <div class="mini-card">
-
-        <h3>CREATE AGAIN</h3>
-
-        <p>
-          YouTube, edits, experiments and creative content
-          built around things I enjoy.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="sanskrit-line">
-      कर्मण्येवाधिकारस्ते
-    </div>
-
-  </div>
 
 </section>
 
-
-<!-- =========================
-     REALMS
-========================= -->
+<!-- REALMS -->
 
 <section id="realms">
 
-  <div class="section-head">
-
-    <div class="eyebrow">
-      REALMS // 03
+    <div class="section-label">
+        02 // REALMS
     </div>
 
-    <h2 class="section-title">
-      THE MULTIVERSE
-    </h2>
+    <div class="section-title">
+        THE MULTIVERSE
+    </div>
 
-    <p class="section-description">
-      Three different sides of the same person.
-      Enter a realm and explore what exists inside it.
+    <p class="section-text" style="margin-bottom:40px;">
+        Every interest becomes a different realm.
+        Explore the worlds that make up ANURAG.
     </p>
 
-  </div>
+    <div class="realms">
+
+        <div class="realm">
+
+            <div class="realm-icon">
+                ◈
+            </div>
+
+            <h3>
+                THE ART REALM
+            </h3>
+
+            <p>
+                Anime drawings, sketches, visual experiments
+                and creative concepts.
+            </p>
+
+        </div>
+
+        <div class="realm">
+
+            <div class="realm-icon">
+                ◉
+            </div>
+
+            <h3>
+                THE CREATOR REALM
+            </h3>
+
+            <p>
+                YouTube, edits, content ideas and turning
+                concepts into something people can experience.
+            </p>
+
+        </div>
+
+        <div class="realm">
+
+            <div class="realm-icon">
+                ⬡
+            </div>
+
+            <h3>
+                THE BUILDER REALM
+            </h3>
+
+            <p>
+                Coding, Minecraft server development,
+                plugins, configurations and digital projects.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="section-label">
+        03 // CAPABILITIES
+    </div>
+
+    <div class="section-title">
+        BUILDER FILE
+    </div>
+
+    <p class="section-text" style="margin-bottom:40px;">
+        The things I build, learn and experiment with.
+    </p>
+
+    <div class="skill-grid">
+
+        <div class="skill">
+
+            <h3>
+                ART & ANIME
+            </h3>
+
+            <p>
+                Anime-inspired drawings, character art,
+                sketches, editing and visual creativity.
+            </p>
+
+        </div>
+
+        <div class="skill">
+
+            <h3>
+                CODING & DEVELOPMENT
+            </h3>
+
+            <p>
+                Learning programming, building digital projects,
+                experimenting with websites and interactive systems.
+            </p>
+
+        </div>
+
+        <div class="skill">
+
+            <h3>
+                MINECRAFT SERVER DEVELOPMENT
+            </h3>
+
+            <p>
+                Server configuration, plugins, permissions,
+                gameplay systems, worlds and server management.
+            </p>
+
+        </div>
+
+        <div class="skill">
+
+            <h3>
+                CONTENT CREATION
+            </h3>
+
+            <p>
+                YouTube videos, anime content, edits,
+                creative concepts and experiments.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- YOUTUBE -->
+
+<section>
+
+    <div class="youtube-box">
+
+        <div class="section-label">
+            CREATOR REALM
+        </div>
+
+        <h2>
+            YOUTUBE
+        </h2>
+
+        <p>
+            Art. Anime. Edits. Experiments.
+            Follow the journey outside this website.
+        </p>
+
+        <a
+            href="https://www.youtube.com/@satoru_strokes7"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn primary"
+        >
+            OPEN CHANNEL
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ANURAG SYSTEM -->
+
+<section id="system">
+
+    <div class="section-label">
+        04 // INTERACTION
+    </div>
+
+    <div class="section-title">
+        ANURAG SYSTEM
+    </div>
+
+    <p class="section-text" style="margin-bottom:35px;">
+        Want to interact with the creator?
+        Choose a protocol.
+    </p>
+
+    <div class="system-box">
+
+        <div class="system-top">
+
+            <strong>
+                ANURAG.SYSTEM
+            </strong>
+
+            <div class="system-status">
+                ONLINE
+            </div>
+
+        </div>
+
+        <div class="request-grid">
+
+            <div
+                class="request-card"
+                onclick="openRequest('ARTWORK')"
+            >
+                <span>
+                    PROTOCOL 01
+                </span>
+
+                <h3>
+                    REQUEST ARTWORK
+                </h3>
+            </div>
+
+            <div
+                class="request-card"
+                onclick="openRequest('YOUTUBE IDEA')"
+            >
+                <span>
+                    PROTOCOL 02
+                </span>
+
+                <h3>
+                    YOUTUBE IDEA
+                </h3>
+            </div>
+
+            <div
+                class="request-card"
+                onclick="openRequest('CONTACT')"
+            >
+                <span>
+                    PROTOCOL 03
+                </span>
+
+                <h3>
+                    CONTACT
+                </h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="section-label">
+        05 // TRANSMISSION
+    </div>
+
+    <div class="section-title">
+        CONTACT
+    </div>
+
+    <div class="contact-box">
+
+        <p class="section-text" style="margin-bottom:30px;">
+            Send a message, idea or request.
+        </p>
+
+        <form
+            action="mailto:"
+            method="post"
+            enctype="text/plain"
+        >
+
+            <input
+                type="text"
+                name="Name"
+                placeholder="YOUR NAME"
+                required
+            >
+
+            <input
+                type="text"
+                name="Subject"
+                id="contactSubject"
+                placeholder="SUBJECT"
+                required
+            >
+
+            <textarea
+                name="Message"
+                placeholder="YOUR MESSAGE"
+                required
+            ></textarea>
+
+            <button
+                type="submit"
+                class="btn primary"
+            >
+                SEND TRANSMISSION
+            </button>
+
+        </form>
+
+        <p class="form-note" style="margin-top:15px;">
+            Email sending will be connected to the ANURAG SYSTEM
+            when the final email configuration is added.
+        </p>
+
+    </div>
+
+    <div class="dharma-trigger">
+
+        <button
+            type="button"
+            class="secret-button"
+            id="dharmaButton"
+        >
+            // UNKNOWN PROTOCOL
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =======================================================
+     DHARMA PROTOCOL
+======================================================== -->
+
+<div id="dharmaMessage">
+
+    <div class="dharma-content">
+
+        <small>
+            SYSTEM OVERRIDE
+        </small>
+
+        <h2>
+            DHARMA PROTOCOL ACTIVATED
+        </h2>
+
+        <p>
+            कर्म पर ध्यान दो, परिणाम पर नहीं।
+        </p>
+
+        <br>
+
+        <button
+            type="button"
+            class="btn"
+            onclick="closeDharma()"
+        >
+            RETURN
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+     FOOTER
+======================================================== -->
+
+<footer>
+
+    <div class="footer-name">
+        ANURAG SINGH
+    </div>
+
+    <div class="footer-role">
+        ARTIST • BUILDER • CREATOR
+    </div>
+
+    <div class="footer-end">
+        The journey continues.
+    </div>
+
+    <div class="footer-sanskrit">
+        ॥ हरि ॐ ॥
+    </div>
+
+</footer>
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================== -->
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const video = document.getElementById("backgroundVideo");
+const audioGate = document.getElementById("audioGate");
+const loader = document.getElementById("loader");
+
+const yesButton = document.getElementById("soundYes");
+const noButton = document.getElementById("soundNo");
+
+const soundToggle = document.getElementById("soundToggle");
+
+const dharmaButton = document.getElementById("dharmaButton");
+const dharmaMessage = document.getElementById("dharmaMessage");
 
 
-        
+/* =========================================================
+   INITIAL VIDEO STATE
+========================================================= */
+
+video.muted = true;
+video.volume = 1;
+
+
+/* =========================================================
+   ENTER WEBSITE
+========================================================= */
+
+function enterExperience(soundOn) {
+
+    /* Sound setting */
+    if (soundOn) {
+        video.muted = false;
+        video.volume = 1;
+    } else {
+        video.muted = true;
+    }
+
+    /* Unlock scrolling */
+    document.body.classList.remove("locked");
+
+    /* Hide audio screen immediately */
+    audioGate.style.opacity = "0";
+    audioGate.style.visibility = "hidden";
+    audioGate.style.pointerEvents = "none";
+
+    /* Show loader */
+    loader.style.opacity = "1";
+    loader.style.visibility = "visible";
+    loader.style.pointerEvents = "auto";
+
+    /* Update sound button */
+    soundToggle.textContent = video.muted ? "🔇" : "🔊";
+
+    /*
+       IMPORTANT:
+       play() is called directly after the user's button click.
+       This gives the browser a valid user interaction.
+    */
+    try {
+
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+
+            playPromise
+                .then(() => {
+                    console.log("Video started.");
+                })
+                .catch((error) => {
+                    console.log("Video playback blocked:", error);
+                });
+
+        }
+
+    } catch (error) {
+
+        console.log("Video error:", error);
+
+    }
+
+    /* Hide loader */
+    setTimeout(function() {
+
+        loader.style.opacity = "0";
+        loader.style.visibility = "hidden";
+        loader.style.pointerEvents = "none";
+
+    }, 2500);
+
+}
+
+
+/* =========================================================
+   YES BUTTON
+========================================================= */
+
+yesButton.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    enterExperience(true);
+
+});
+
+
+/* =========================================================
+   NO BUTTON
+========================================================= */
+
+noButton.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    enterExperience(false);
+
+});
+
+
+/* =========================================================
+   SOUND TOGGLE
+========================================================= */
+
+soundToggle.addEventListener("click", function() {
+
+    if (video.muted) {
+
+        video.muted = false;
+        video.volume = 1;
+        soundToggle.textContent = "🔊";
+
+        const playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {});
+        }
+
+    } else {
+
+        video.muted = true;
+        soundToggle.textContent = "🔇";
+
+    }
+
+});
+
+
+/* =========================================================
+   ANURAG SYSTEM REQUESTS
+========================================================= */
+
+function openRequest(type) {
+
+    const subjectInput =
+        document.getElementById("contactSubject");
+
+    subjectInput.value = type;
+
+    document
+        .getElementById("contact")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================================================
+   DHARMA PROTOCOL
+========================================================= */
+
+dharmaButton.addEventListener("click", function() {
+
+    dharmaMessage.classList.add("active");
+
+});
+
+
+function closeDharma() {
+
+    dharmaMessage.classList.remove("active");
+
+}
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        closeDharma();
+
+    }
+
+});
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+
+function resizeCanvas() {
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", resizeCanvas);
+
+
+function createParticles() {
+
+    particles = [];
+
+    const amount =
+        window.innerWidth < 700 ? 45 : 90;
+
+    for (let i = 0; i < amount; i++) {
+
+        particles.push({
+
+            x: Math.random() * canvas.width,
+
+            y: Math.random() * canvas.height,
+
+            size: Math.random() * 1.5 + 0.3,
+
+            speed: Math.random() * 0.25 + 0.05,
+
+            opacity: Math.random() * 0.5 + 0.1
+
+        });
+
+    }
+
+}
+
+createParticles();
+
+
+function drawParticles() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    particles.forEach(function(p) {
+
+        p.y -= p.speed;
+
+        if (p.y < 0) {
+            p.y = canvas.height;
+        }
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            "rgba(255,255,255," +
+            p.opacity +
+            ")";
+
+        ctx.fill();
+
+    });
+
+    requestAnimationFrame(drawParticles);
+
+}
+
+drawParticles();
+
+
+/* =========================================================
+   VIDEO FALLBACK
+========================================================= */
+
+video.addEventListener("error", function() {
+
+    console.log(
+        "krishna-edit.mp4 could not be loaded. Website will still work."
+    );
+
+});
+
+
+/* =========================================================
+   PREVENT PAGE FROM GETTING STUCK
+========================================================= */
+
+window.addEventListener("load", function() {
+
+    /*
+       We intentionally DO NOT automatically remove
+       the audio gate here.
+
+       The visitor must choose YES or NO.
+    */
+
+    console.log(
+        "ANURAG MULTIVERSE READY."
+    );
+
+});
+
+</script>
+
+</body>
+</html>
