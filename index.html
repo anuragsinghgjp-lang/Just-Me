@@ -6,13 +6,14 @@
 
 <title>ANURAG — THE MULTIVERSE</title>
 
-<meta name="description" content="ANURAG SINGH — Artist, Builder and Creator. Enter the Multiverse.">
+<meta name="description" content="ANURAG SINGH — Artist, Builder and Creator.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 /* =========================================================
    RESET
 ========================================================= */
@@ -28,8 +29,8 @@ html {
 }
 
 body {
-    background: #030305;
-    color: #ffffff;
+    background: #020204;
+    color: #fff;
     font-family: "Inter", sans-serif;
     overflow-x: hidden;
 }
@@ -39,11 +40,11 @@ body.locked {
 }
 
 button,
-a,
 input,
 textarea {
     font-family: inherit;
 }
+
 
 /* =========================================================
    BACKGROUND VIDEO
@@ -52,45 +53,52 @@ textarea {
 .video-bg {
     position: fixed;
     inset: 0;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     z-index: -10;
-    opacity: 0.62;
-    background: #030305;
+
+    background: #020204;
+
+    opacity: 0.58;
 }
 
 .video-overlay {
     position: fixed;
     inset: 0;
+
     z-index: -9;
+
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,0.65),
-            rgba(0,0,0,0.25) 40%,
-            rgba(0,0,0,0.85)
+            rgba(0,0,0,.75),
+            rgba(0,0,0,.25) 40%,
+            rgba(0,0,0,.9)
         );
+
     pointer-events: none;
 }
 
 .cosmic-overlay {
     position: fixed;
     inset: 0;
+
     z-index: -8;
+
     background:
         radial-gradient(
             circle at 50% 35%,
-            rgba(255,255,255,0.06),
+            rgba(255,255,255,.06),
             transparent 35%
-        ),
-        radial-gradient(
-            circle at 20% 80%,
-            rgba(255,190,80,0.06),
-            transparent 30%
         );
+
     pointer-events: none;
 }
+
 
 /* =========================================================
    PARTICLES
@@ -99,117 +107,420 @@ textarea {
 #particles {
     position: fixed;
     inset: 0;
+
     z-index: -5;
+
     pointer-events: none;
 }
 
+
 /* =========================================================
-   AUDIO GATE
+   PREMIUM ENTRY SCREEN
 ========================================================= */
 
 #audioGate {
     position: fixed;
     inset: 0;
+
     z-index: 5000;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(45,35,20,0.25),
-            rgba(0,0,0,0.98) 70%
-        );
+    overflow: hidden;
+
+    background: #020204;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 
     transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
+        opacity .9s ease,
+        visibility .9s ease;
 }
 
-.audio-box {
-    width: min(92%, 620px);
+
+/* Solid cinematic background */
+
+.entry-bg {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            #1b160d 0%,
+            #0c0a08 27%,
+            #050507 58%,
+            #010102 100%
+        );
+
+    z-index: -5;
+}
+
+.entry-bg::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.5) .7px,
+            transparent .9px
+        );
+
+    background-size: 85px 85px;
+
+    opacity: .10;
+}
+
+
+/* Golden atmosphere */
+
+.entry-glow {
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+.entry-glow-1 {
+    background: rgba(184,135,45,.10);
+
+    top: -80px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.entry-glow-2 {
+    background: rgba(255,255,255,.035);
+
+    right: -180px;
+    bottom: -200px;
+}
+
+
+/* Sacred geometric rings */
+
+.entry-ring {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    border: 1px solid rgba(207,168,82,.08);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+}
+
+.ring-1 {
+    width: 420px;
+    height: 420px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+}
+
+.ring-2 {
+    width: 610px;
+    height: 610px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-25deg);
+}
+
+.ring-3 {
+    width: 800px;
+    height: 800px;
+
+    border-color: rgba(255,255,255,.035);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(15deg);
+}
+
+
+/* Entry content */
+
+.entry-content {
+    position: relative;
+
+    width: min(90%, 650px);
+
     text-align: center;
-    padding: 50px 30px;
+
+    z-index: 10;
+
+    animation: entryAppear 1.3s ease forwards;
 }
 
-.audio-small {
-    font-size: 11px;
-    letter-spacing: 5px;
-    color: rgba(255,255,255,0.55);
+@keyframes entryAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Top */
+
+.entry-top {
     margin-bottom: 20px;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 7px;
+
+    color: rgba(255,255,255,.42);
 }
 
-.audio-title {
+
+/* Main title */
+
+.entry-title {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(48px, 10vw, 90px);
+
+    font-size: clamp(60px, 11vw, 120px);
+
+    line-height: .9;
+
     font-weight: 800;
-    letter-spacing: 12px;
+
+    letter-spacing: -6px;
+
+    color: #fff;
+
+    text-shadow:
+        0 0 35px rgba(255,255,255,.08);
 }
 
-.audio-subtitle {
-    margin-top: 5px;
-    font-size: 13px;
-    letter-spacing: 6px;
-    color: rgba(255,255,255,0.65);
+.entry-subtitle {
+    margin-top: 15px;
+
+    font-size: clamp(11px, 2vw, 15px);
+
+    letter-spacing: 9px;
+
+    color: rgba(255,255,255,.5);
 }
 
-.audio-line {
-    width: 120px;
+
+/* Divider */
+
+.entry-divider {
+    width: 90px;
     height: 1px;
-    margin: 35px auto;
-    background: rgba(255,255,255,0.45);
+
+    margin: 32px auto 22px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(207,168,82,.85),
+            transparent
+        );
 }
 
-.audio-question {
-    color: rgba(255,255,255,0.7);
-    font-size: 14px;
-    line-height: 1.7;
+
+/* Sanskrit */
+
+.entry-sanskrit {
+    margin-bottom: 32px;
+
+    font-size: 20px;
+
+    color: rgba(225,190,105,.85);
+
+    letter-spacing: 1px;
+}
+
+
+/* Question */
+
+.entry-question {
+    margin-bottom: 10px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: rgba(255,255,255,.42);
+}
+
+.entry-description {
     margin-bottom: 28px;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,.72);
 }
 
-.audio-buttons {
+
+/* Buttons */
+
+.entry-buttons {
     display: flex;
+
     justify-content: center;
-    gap: 14px;
+
+    align-items: center;
+
+    gap: 12px;
+
     flex-wrap: wrap;
 }
 
-.audio-btn {
-    min-width: 180px;
+.entry-btn {
+    min-width: 185px;
+
     padding: 15px 24px;
 
-    border: 1px solid rgba(255,255,255,0.25);
     border-radius: 999px;
 
-    background: rgba(255,255,255,0.06);
-    color: white;
+    border: 1px solid rgba(255,255,255,.18);
+
+    background: #0c0c10;
+
+    color: rgba(255,255,255,.78);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
 
     cursor: pointer;
-    transition: 0.3s ease;
 
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 2px;
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
 }
 
-.audio-btn:hover {
-    transform: translateY(-3px);
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.6);
+.entry-btn span {
+    margin-right: 7px;
 }
 
-.audio-btn.primary {
-    background: rgba(255,255,255,0.14);
+.entry-btn:hover {
+    transform: translateY(-4px);
+
+    background: #17171c;
+
+    border-color: rgba(255,255,255,.4);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.55);
 }
 
-.audio-note {
+.entry-btn-main {
+    background: #f1eee7;
+
+    color: #080808;
+
+    border-color: #f1eee7;
+
+    box-shadow:
+        0 8px 30px rgba(255,255,255,.08);
+}
+
+.entry-btn-main:hover {
+    background: #fff;
+
+    color: #000;
+
+    box-shadow:
+        0 12px 40px rgba(255,255,255,.15);
+}
+
+
+/* Footer */
+
+.entry-footer {
     margin-top: 25px;
-    font-size: 10px;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 1px;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,.22);
 }
+
+
+/* Corner details */
+
+.entry-corner {
+    position: absolute;
+
+    width: 45px;
+    height: 45px;
+
+    opacity: .4;
+}
+
+.corner-tl {
+    top: 30px;
+    left: 30px;
+
+    border-top: 1px solid rgba(255,255,255,.25);
+    border-left: 1px solid rgba(255,255,255,.25);
+}
+
+.corner-tr {
+    top: 30px;
+    right: 30px;
+
+    border-top: 1px solid rgba(255,255,255,.25);
+    border-right: 1px solid rgba(255,255,255,.25);
+}
+
+.corner-bl {
+    bottom: 30px;
+    left: 30px;
+
+    border-bottom: 1px solid rgba(255,255,255,.25);
+    border-left: 1px solid rgba(255,255,255,.25);
+}
+
+.corner-br {
+    bottom: 30px;
+    right: 30px;
+
+    border-bottom: 1px solid rgba(255,255,255,.25);
+    border-right: 1px solid rgba(255,255,255,.25);
+}
+
 
 /* =========================================================
    LOADER
@@ -218,6 +529,7 @@ textarea {
 #loader {
     position: fixed;
     inset: 0;
+
     z-index: 4000;
 
     display: flex;
@@ -241,78 +553,101 @@ textarea {
 
 .loader-text {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(17px, 4vw, 30px);
-    letter-spacing: 5px;
+
+    font-size: clamp(16px, 4vw, 30px);
+
+    letter-spacing: 4px;
+
     font-weight: 600;
 }
 
 .loader-line {
     width: 0;
     height: 1px;
+
     margin: 25px auto 0;
-    background: white;
+
+    background: #fff;
+
     animation: loaderLine 2.2s ease forwards;
 }
 
 @keyframes loaderLine {
+
     to {
         width: 220px;
     }
+
 }
 
+
 /* =========================================================
-   NAVIGATION
+   NAVBAR
 ========================================================= */
 
 .navbar {
     position: fixed;
+
     top: 20px;
     left: 50%;
+
     transform: translateX(-50%);
 
     width: min(92%, 1050px);
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
     padding: 14px 18px;
 
-    background: rgba(10,10,14,0.48);
+    background: rgba(8,8,12,.7);
+
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,.12);
+
     border-radius: 18px;
 
     z-index: 1000;
 }
 
 .logo {
-    color: white;
+    color: #fff;
+
     text-decoration: none;
+
     font-family: "Montserrat", sans-serif;
+
     font-size: 15px;
+
     font-weight: 800;
+
     letter-spacing: 3px;
 }
 
 .nav-links {
     display: flex;
+
     gap: 22px;
-    align-items: center;
 }
 
 .nav-links a {
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,.62);
+
     text-decoration: none;
+
     font-size: 10px;
+
     letter-spacing: 1.5px;
-    transition: 0.3s;
+
+    transition: .3s;
 }
 
 .nav-links a:hover {
-    color: white;
+    color: #fff;
 }
 
 .sound-toggle {
@@ -320,13 +655,16 @@ textarea {
     height: 34px;
 
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.18);
 
-    background: rgba(255,255,255,0.06);
-    color: white;
+    border: 1px solid rgba(255,255,255,.18);
+
+    background: rgba(255,255,255,.06);
+
+    color: #fff;
 
     cursor: pointer;
 }
+
 
 /* =========================================================
    GENERAL
@@ -339,31 +677,44 @@ main {
 
 section {
     width: min(1100px, 92%);
+
     margin: auto;
+
     padding: 120px 0;
 }
 
 .section-label {
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: rgba(255,255,255,0.45);
     margin-bottom: 18px;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: rgba(255,255,255,.45);
 }
 
 .section-title {
-    font-family: "Montserrat", sans-serif;
-    font-size: clamp(34px, 7vw, 68px);
-    line-height: 1;
-    letter-spacing: -2px;
     margin-bottom: 28px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: clamp(34px, 7vw, 68px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
 }
 
 .section-text {
     max-width: 680px;
-    color: rgba(255,255,255,0.65);
+
+    color: rgba(255,255,255,.65);
+
     line-height: 1.9;
+
     font-size: 15px;
 }
+
 
 /* =========================================================
    HERO
@@ -371,11 +722,14 @@ section {
 
 .hero {
     min-height: 100vh;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     text-align: center;
+
     padding: 120px 20px 80px;
 }
 
@@ -384,142 +738,184 @@ section {
 }
 
 .hero-kicker {
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: rgba(255,255,255,0.5);
     margin-bottom: 20px;
+
+    font-size: 10px;
+
+    letter-spacing: 6px;
+
+    color: rgba(255,255,255,.5);
 }
 
 .hero h1 {
     font-family: "Montserrat", sans-serif;
+
     font-size: clamp(65px, 15vw, 180px);
-    line-height: 0.88;
+
+    line-height: .88;
+
     font-weight: 800;
+
     letter-spacing: -8px;
 }
 
 .hero-subtitle {
     margin-top: 28px;
+
     font-size: clamp(14px, 2vw, 18px);
+
     letter-spacing: 7px;
-    color: rgba(255,255,255,0.68);
+
+    color: rgba(255,255,255,.68);
 }
 
 .sanskrit {
     margin-top: 35px;
+
     font-size: 22px;
-    color: rgba(255,255,255,0.82);
+
+    color: rgba(255,255,255,.82);
 }
 
 .hero-description {
     max-width: 650px;
+
     margin: 28px auto 0;
-    color: rgba(255,255,255,0.55);
+
+    color: rgba(255,255,255,.55);
+
     line-height: 1.8;
+
     font-size: 14px;
 }
 
 .hero-buttons {
     margin-top: 38px;
+
     display: flex;
+
     justify-content: center;
+
     gap: 12px;
+
     flex-wrap: wrap;
 }
 
 .btn {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
     padding: 14px 24px;
 
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,.2);
+
     border-radius: 999px;
 
-    background: rgba(255,255,255,0.06);
-    color: white;
+    background: rgba(255,255,255,.06);
+
+    color: #fff;
 
     text-decoration: none;
+
     font-size: 11px;
+
     font-weight: 700;
+
     letter-spacing: 1.5px;
 
-    transition: 0.3s ease;
+    cursor: pointer;
+
+    transition: .3s ease;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    background: rgba(255,255,255,0.14);
+
+    background: rgba(255,255,255,.14);
 }
 
 .btn.primary {
-    background: white;
-    color: black;
-}
+    background: #fff;
 
-/* =========================================================
-   SCROLL INDICATOR
-========================================================= */
+    color: #000;
+}
 
 .scroll-indicator {
     position: absolute;
+
     bottom: 35px;
     left: 50%;
+
     transform: translateX(-50%);
 
     font-size: 9px;
+
     letter-spacing: 4px;
-    color: rgba(255,255,255,0.4);
+
+    color: rgba(255,255,255,.4);
 }
+
 
 /* =========================================================
    ABOUT
 ========================================================= */
 
 .about-box {
-    position: relative;
-
     padding: 55px;
 
-    background: rgba(10,10,14,0.45);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    background: rgba(8,8,12,.68);
 
-    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255,255,255,.1);
+
     border-radius: 30px;
 }
 
 .identity {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
+
     gap: 50px;
 }
 
 .identity-title {
-    font-family: "Montserrat", sans-serif;
-    font-size: 27px;
     margin-bottom: 18px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 27px;
 }
 
 .identity-text {
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,.6);
+
     line-height: 1.9;
+
     font-size: 14px;
 }
 
 .about-quote {
     margin-top: 45px;
+
     font-family: "Montserrat", sans-serif;
+
     font-size: clamp(22px, 4vw, 38px);
+
     line-height: 1.25;
 }
 
 .about-sanskrit {
     margin-top: 18px;
-    color: rgba(255,255,255,0.5);
+
+    color: rgba(255,255,255,.5);
+
     font-size: 18px;
 }
+
 
 /* =========================================================
    REALMS
@@ -527,7 +923,9 @@ section {
 
 .realms {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns: repeat(3,1fr);
+
     gap: 18px;
 }
 
@@ -537,51 +935,55 @@ section {
     padding: 30px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: flex-end;
 
-    border: 1px solid rgba(255,255,255,0.11);
+    border: 1px solid rgba(255,255,255,.11);
+
     border-radius: 25px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,0.08),
-            rgba(255,255,255,0.025)
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.025)
         );
 
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 
-    transition: 0.45s ease;
+    transition: .45s ease;
 }
 
 .realm:hover {
     transform: translateY(-8px);
-    border-color: rgba(255,255,255,0.3);
-}
 
-.realm-number {
-    position: absolute;
-    opacity: 0;
+    border-color: rgba(255,255,255,.3);
 }
 
 .realm-icon {
     font-size: 26px;
+
     margin-bottom: auto;
 }
 
 .realm h3 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 22px;
     margin-bottom: 12px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 22px;
 }
 
 .realm p {
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,.55);
+
     font-size: 13px;
+
     line-height: 1.7;
 }
+
 
 /* =========================================================
    SKILLS
@@ -589,28 +991,36 @@ section {
 
 .skill-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns: repeat(2,1fr);
+
     gap: 16px;
 }
 
 .skill {
     padding: 28px;
 
-    background: rgba(10,10,14,0.42);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(8,8,12,.65);
+
+    border: 1px solid rgba(255,255,255,.1);
+
     border-radius: 20px;
 }
 
 .skill h3 {
     margin-bottom: 10px;
+
     font-family: "Montserrat", sans-serif;
 }
 
 .skill p {
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,.55);
+
     font-size: 13px;
+
     line-height: 1.8;
 }
+
 
 /* =========================================================
    YOUTUBE
@@ -618,35 +1028,43 @@ section {
 
 .youtube-box {
     padding: 65px 40px;
+
     text-align: center;
 
     background:
         radial-gradient(
             circle at center,
-            rgba(255,255,255,0.08),
-            rgba(255,255,255,0.02)
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.02)
         );
 
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,.1);
+
     border-radius: 30px;
 }
 
 .youtube-box h2 {
-    font-family: "Montserrat", sans-serif;
-    font-size: clamp(32px, 7vw, 70px);
     margin-bottom: 15px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: clamp(32px,7vw,70px);
 }
 
 .youtube-box p {
-    color: rgba(255,255,255,0.55);
     max-width: 550px;
+
     margin: auto;
+
+    color: rgba(255,255,255,.55);
+
     line-height: 1.8;
 }
 
 .youtube-box .btn {
     margin-top: 30px;
 }
+
 
 /* =========================================================
    ANURAG SYSTEM
@@ -655,30 +1073,20 @@ section {
 .system-box {
     padding: 50px;
 
-    background: rgba(5,5,8,0.7);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(5,5,8,.78);
+
+    border: 1px solid rgba(255,255,255,.12);
+
     border-radius: 28px;
 
     position: relative;
+
     overflow: hidden;
-}
-
-.system-box::before {
-    content: "";
-
-    position: absolute;
-    width: 300px;
-    height: 300px;
-
-    top: -150px;
-    right: -150px;
-
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 50%;
 }
 
 .system-top {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -687,49 +1095,62 @@ section {
 
 .system-status {
     font-size: 9px;
+
     letter-spacing: 2px;
-    color: rgba(255,255,255,0.45);
+
+    color: rgba(255,255,255,.45);
 }
 
 .system-status::before {
     content: "● ";
-    color: white;
+
+    color: #fff;
 }
 
 .request-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns: repeat(3,1fr);
+
     gap: 14px;
 }
 
 .request-card {
     padding: 25px;
 
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,.1);
+
     border-radius: 18px;
 
-    background: rgba(255,255,255,0.035);
+    background: rgba(255,255,255,.035);
 
     cursor: pointer;
-    transition: 0.3s;
+
+    transition: .3s;
 }
 
 .request-card:hover {
-    background: rgba(255,255,255,0.09);
+    background: rgba(255,255,255,.09);
+
     transform: translateY(-4px);
 }
 
 .request-card span {
     display: block;
-    font-size: 9px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 2px;
+
     margin-bottom: 12px;
+
+    font-size: 9px;
+
+    color: rgba(255,255,255,.4);
+
+    letter-spacing: 2px;
 }
 
 .request-card h3 {
     font-size: 16px;
 }
+
 
 /* =========================================================
    CONTACT
@@ -737,11 +1158,13 @@ section {
 
 .contact-box {
     max-width: 800px;
+
     margin: auto;
 }
 
 form {
     display: grid;
+
     gap: 15px;
 }
 
@@ -752,102 +1175,127 @@ textarea {
     padding: 16px 18px;
 
     border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.12);
 
-    background: rgba(255,255,255,0.045);
-    color: white;
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(255,255,255,.045);
+
+    color: #fff;
 
     outline: none;
-
-    transition: 0.3s;
 }
 
 input:focus,
 textarea:focus {
-    border-color: rgba(255,255,255,0.4);
+    border-color: rgba(255,255,255,.4);
 }
 
 textarea {
     min-height: 150px;
+
     resize: vertical;
 }
 
 .form-note {
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,.4);
+
     font-size: 11px;
+
     line-height: 1.7;
 }
 
+
 /* =========================================================
-   DHARMA PROTOCOL
+   DHARMA
 ========================================================= */
 
 .dharma-trigger {
     text-align: center;
+
     margin-top: 80px;
 }
 
 .secret-button {
     background: transparent;
+
     border: none;
-    color: rgba(255,255,255,0.18);
+
+    color: rgba(255,255,255,.18);
+
     font-size: 9px;
+
     letter-spacing: 4px;
+
     cursor: pointer;
-    transition: 0.4s;
+
+    transition: .4s;
 }
 
 .secret-button:hover {
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,.6);
 }
 
 #dharmaMessage {
     position: fixed;
+
     inset: 0;
 
     z-index: 3000;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    background: rgba(0,0,0,0.94);
+    background: rgba(0,0,0,.96);
+
     backdrop-filter: blur(20px);
 
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 
-    transition: 0.8s;
+    transition: .8s;
 }
 
 #dharmaMessage.active {
     opacity: 1;
+
     visibility: visible;
+
     pointer-events: auto;
 }
 
 .dharma-content {
     text-align: center;
+
     padding: 30px;
 }
 
 .dharma-content small {
     font-size: 9px;
+
     letter-spacing: 5px;
-    color: rgba(255,255,255,0.4);
+
+    color: rgba(255,255,255,.4);
 }
 
 .dharma-content h2 {
     margin: 25px 0;
+
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(30px, 7vw, 65px);
+
+    font-size: clamp(30px,7vw,65px);
 }
 
 .dharma-content p {
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,.6);
+
     font-size: 18px;
 }
+
 
 /* =========================================================
    FOOTER
@@ -855,33 +1303,44 @@ textarea {
 
 footer {
     padding: 100px 20px 40px;
+
     text-align: center;
 }
 
 .footer-name {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(40px, 8vw, 85px);
+
+    font-size: clamp(40px,8vw,85px);
+
     font-weight: 800;
 }
 
 .footer-role {
     margin-top: 15px;
+
     font-size: 10px;
+
     letter-spacing: 4px;
-    color: rgba(255,255,255,0.45);
+
+    color: rgba(255,255,255,.45);
 }
 
 .footer-end {
     margin-top: 50px;
+
     font-size: 12px;
-    color: rgba(255,255,255,0.35);
+
+    color: rgba(255,255,255,.35);
 }
 
 .footer-sanskrit {
     margin-top: 18px;
+
     font-size: 14px;
-    color: rgba(255,255,255,0.45);
+
+    color: rgba(255,255,255,.45);
 }
+
 
 /* =========================================================
    MOBILE
@@ -891,7 +1350,6 @@ footer {
 
     .navbar {
         top: 10px;
-        padding: 12px 14px;
     }
 
     .nav-links {
@@ -912,6 +1370,7 @@ footer {
 
     .identity {
         grid-template-columns: 1fr;
+
         gap: 30px;
     }
 
@@ -939,22 +1398,91 @@ footer {
         padding: 50px 25px;
     }
 
-    .audio-box {
-        padding: 30px 20px;
+}
+
+
+/* =========================================================
+   ENTRY MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .entry-title {
+        font-size: 62px;
+
+        letter-spacing: -4px;
     }
 
-    .audio-title {
-        letter-spacing: 7px;
+    .entry-subtitle {
+        letter-spacing: 6px;
     }
+
+    .entry-sanskrit {
+        font-size: 18px;
+    }
+
+    .entry-buttons {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .entry-btn {
+        width: min(290px,90%);
+    }
+
+    .ring-1 {
+        width: 330px;
+        height: 330px;
+    }
+
+    .ring-2 {
+        width: 470px;
+        height: 470px;
+    }
+
+    .ring-3 {
+        width: 620px;
+        height: 620px;
+    }
+
+    .entry-corner {
+        width: 30px;
+        height: 30px;
+    }
+
+    .corner-tl,
+    .corner-tr {
+        top: 18px;
+    }
+
+    .corner-bl,
+    .corner-br {
+        bottom: 18px;
+    }
+
+    .corner-tl,
+    .corner-bl {
+        left: 18px;
+    }
+
+    .corner-tr,
+    .corner-br {
+        right: 18px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body class="locked">
 
-<!-- =======================================================
-     BACKGROUND VIDEO
-======================================================== -->
+
+<!-- =========================================================
+     VIDEO
+========================================================= -->
 
 <video
     id="backgroundVideo"
@@ -973,64 +1501,95 @@ footer {
 
 <canvas id="particles"></canvas>
 
-<!-- =======================================================
-     AUDIO GATE
-======================================================== -->
+
+<!-- =========================================================
+     ENTRY SCREEN
+========================================================= -->
 
 <div id="audioGate">
 
-    <div class="audio-box">
+    <div class="entry-bg"></div>
 
-        <div class="audio-small">
-            ANURAG PRESENTS
+    <div class="entry-glow entry-glow-1"></div>
+    <div class="entry-glow entry-glow-2"></div>
+
+    <div class="entry-ring ring-1"></div>
+    <div class="entry-ring ring-2"></div>
+    <div class="entry-ring ring-3"></div>
+
+
+    <div class="entry-content">
+
+        <div class="entry-top">
+            ANURAG SINGH
         </div>
 
-        <div class="audio-title">
+        <div class="entry-title">
             ANURAG
         </div>
 
-        <div class="audio-subtitle">
+        <div class="entry-subtitle">
             THE MULTIVERSE
         </div>
 
-        <div class="audio-line"></div>
+        <div class="entry-divider"></div>
 
-        <div class="audio-question">
-            Would you like to experience<br>
-            this website with sound?
+        <div class="entry-sanskrit">
+            कर्मण्येवाधिकारस्ते
         </div>
 
-        <div class="audio-buttons">
+        <p class="entry-question">
+            Before entering the experience
+        </p>
+
+        <p class="entry-description">
+            Would you like to experience<br>
+            this universe with sound?
+        </p>
+
+
+        <div class="entry-buttons">
 
             <button
                 type="button"
                 id="soundYes"
-                class="audio-btn primary"
+                class="entry-btn entry-btn-main"
             >
-                🔊 YES, ENTER
+                <span>🔊</span>
+                YES, ENTER
             </button>
+
 
             <button
                 type="button"
                 id="soundNo"
-                class="audio-btn"
+                class="entry-btn"
             >
-                🔇 NO, ENTER
+                <span>🔇</span>
+                NO, ENTER
             </button>
 
         </div>
 
-        <div class="audio-note">
-            Sound can be changed anytime.
+
+        <div class="entry-footer">
+            SOUND CAN BE CHANGED ANYTIME
         </div>
 
     </div>
 
+
+    <div class="entry-corner corner-tl"></div>
+    <div class="entry-corner corner-tr"></div>
+    <div class="entry-corner corner-bl"></div>
+    <div class="entry-corner corner-br"></div>
+
 </div>
 
-<!-- =======================================================
+
+<!-- =========================================================
      LOADER
-======================================================== -->
+========================================================= -->
 
 <div id="loader">
 
@@ -1046,9 +1605,10 @@ footer {
 
 </div>
 
-<!-- =======================================================
+
+<!-- =========================================================
      NAVBAR
-======================================================== -->
+========================================================= -->
 
 <nav class="navbar">
 
@@ -1057,29 +1617,32 @@ footer {
     </a>
 
     <div class="nav-links">
+
         <a href="#about">ABOUT</a>
         <a href="#realms">REALMS</a>
         <a href="#skills">SKILLS</a>
         <a href="#system">SYSTEM</a>
         <a href="#contact">CONTACT</a>
+
     </div>
 
     <button
         type="button"
         class="sound-toggle"
         id="soundToggle"
-        title="Toggle sound"
     >
         🔇
     </button>
 
 </nav>
 
-<!-- =======================================================
+
+<!-- =========================================================
      MAIN
-======================================================== -->
+========================================================= -->
 
 <main>
+
 
 <!-- HERO -->
 
@@ -1128,11 +1691,13 @@ footer {
 
     </div>
 
+
     <div class="scroll-indicator">
         SCROLL TO EXPLORE
     </div>
 
 </section>
+
 
 <!-- ABOUT -->
 
@@ -1146,11 +1711,13 @@ footer {
         ABOUT
     </div>
 
+
     <div class="about-box">
 
         <div class="identity">
 
             <div>
+
                 <div class="identity-title">
                     ANURAG SINGH
                 </div>
@@ -1168,7 +1735,9 @@ footer {
                     and visual ideas to coding, Minecraft development
                     and digital projects.
                 </p>
+
             </div>
+
 
             <div>
 
@@ -1200,6 +1769,7 @@ footer {
 
         </div>
 
+
         <div class="about-quote">
             Still learning.<br>
             Still building.<br>
@@ -1214,6 +1784,7 @@ footer {
 
 </section>
 
+
 <!-- REALMS -->
 
 <section id="realms">
@@ -1226,10 +1797,14 @@ footer {
         THE MULTIVERSE
     </div>
 
-    <p class="section-text" style="margin-bottom:40px;">
+    <p
+        class="section-text"
+        style="margin-bottom:40px;"
+    >
         Every interest becomes a different realm.
         Explore the worlds that make up ANURAG.
     </p>
+
 
     <div class="realms">
 
@@ -1250,6 +1825,7 @@ footer {
 
         </div>
 
+
         <div class="realm">
 
             <div class="realm-icon">
@@ -1266,6 +1842,7 @@ footer {
             </p>
 
         </div>
+
 
         <div class="realm">
 
@@ -1288,6 +1865,7 @@ footer {
 
 </section>
 
+
 <!-- SKILLS -->
 
 <section id="skills">
@@ -1300,9 +1878,13 @@ footer {
         BUILDER FILE
     </div>
 
-    <p class="section-text" style="margin-bottom:40px;">
+    <p
+        class="section-text"
+        style="margin-bottom:40px;"
+    >
         The things I build, learn and experiment with.
     </p>
+
 
     <div class="skill-grid">
 
@@ -1319,6 +1901,7 @@ footer {
 
         </div>
 
+
         <div class="skill">
 
             <h3>
@@ -1332,6 +1915,7 @@ footer {
 
         </div>
 
+
         <div class="skill">
 
             <h3>
@@ -1344,6 +1928,7 @@ footer {
             </p>
 
         </div>
+
 
         <div class="skill">
 
@@ -1361,6 +1946,7 @@ footer {
     </div>
 
 </section>
+
 
 <!-- YOUTUBE -->
 
@@ -1394,6 +1980,7 @@ footer {
 
 </section>
 
+
 <!-- ANURAG SYSTEM -->
 
 <section id="system">
@@ -1406,10 +1993,14 @@ footer {
         ANURAG SYSTEM
     </div>
 
-    <p class="section-text" style="margin-bottom:35px;">
+    <p
+        class="section-text"
+        style="margin-bottom:35px;"
+    >
         Want to interact with the creator?
         Choose a protocol.
     </p>
+
 
     <div class="system-box">
 
@@ -1425,12 +2016,14 @@ footer {
 
         </div>
 
+
         <div class="request-grid">
 
             <div
                 class="request-card"
                 onclick="openRequest('ARTWORK')"
             >
+
                 <span>
                     PROTOCOL 01
                 </span>
@@ -1438,12 +2031,15 @@ footer {
                 <h3>
                     REQUEST ARTWORK
                 </h3>
+
             </div>
+
 
             <div
                 class="request-card"
                 onclick="openRequest('YOUTUBE IDEA')"
             >
+
                 <span>
                     PROTOCOL 02
                 </span>
@@ -1451,12 +2047,15 @@ footer {
                 <h3>
                     YOUTUBE IDEA
                 </h3>
+
             </div>
+
 
             <div
                 class="request-card"
                 onclick="openRequest('CONTACT')"
             >
+
                 <span>
                     PROTOCOL 03
                 </span>
@@ -1464,6 +2063,7 @@ footer {
                 <h3>
                     CONTACT
                 </h3>
+
             </div>
 
         </div>
@@ -1471,6 +2071,7 @@ footer {
     </div>
 
 </section>
+
 
 <!-- CONTACT -->
 
@@ -1484,11 +2085,16 @@ footer {
         CONTACT
     </div>
 
+
     <div class="contact-box">
 
-        <p class="section-text" style="margin-bottom:30px;">
+        <p
+            class="section-text"
+            style="margin-bottom:30px;"
+        >
             Send a message, idea or request.
         </p>
+
 
         <form
             action="mailto:"
@@ -1526,12 +2132,17 @@ footer {
 
         </form>
 
-        <p class="form-note" style="margin-top:15px;">
-            Email sending will be connected to the ANURAG SYSTEM
-            when the final email configuration is added.
+
+        <p
+            class="form-note"
+            style="margin-top:15px;"
+        >
+            Email connection can be added later without changing
+            the design of the website.
         </p>
 
     </div>
+
 
     <div class="dharma-trigger">
 
@@ -1549,9 +2160,10 @@ footer {
 
 </main>
 
-<!-- =======================================================
+
+<!-- =========================================================
      DHARMA PROTOCOL
-======================================================== -->
+========================================================= -->
 
 <div id="dharmaMessage">
 
@@ -1583,9 +2195,10 @@ footer {
 
 </div>
 
-<!-- =======================================================
+
+<!-- =========================================================
      FOOTER
-======================================================== -->
+========================================================= -->
 
 <footer>
 
@@ -1607,9 +2220,10 @@ footer {
 
 </footer>
 
-<!-- =======================================================
+
+<!-- =========================================================
      JAVASCRIPT
-======================================================== -->
+========================================================= -->
 
 <script>
 
@@ -1617,21 +2231,33 @@ footer {
    ELEMENTS
 ========================================================= */
 
-const video = document.getElementById("backgroundVideo");
-const audioGate = document.getElementById("audioGate");
-const loader = document.getElementById("loader");
+const video =
+    document.getElementById("backgroundVideo");
 
-const yesButton = document.getElementById("soundYes");
-const noButton = document.getElementById("soundNo");
+const audioGate =
+    document.getElementById("audioGate");
 
-const soundToggle = document.getElementById("soundToggle");
+const loader =
+    document.getElementById("loader");
 
-const dharmaButton = document.getElementById("dharmaButton");
-const dharmaMessage = document.getElementById("dharmaMessage");
+const yesButton =
+    document.getElementById("soundYes");
+
+const noButton =
+    document.getElementById("soundNo");
+
+const soundToggle =
+    document.getElementById("soundToggle");
+
+const dharmaButton =
+    document.getElementById("dharmaButton");
+
+const dharmaMessage =
+    document.getElementById("dharmaMessage");
 
 
 /* =========================================================
-   INITIAL VIDEO STATE
+   INITIAL VIDEO
 ========================================================= */
 
 video.muted = true;
@@ -1639,63 +2265,62 @@ video.volume = 1;
 
 
 /* =========================================================
-   ENTER WEBSITE
+   ENTER EXPERIENCE
 ========================================================= */
 
 function enterExperience(soundOn) {
 
-    /* Sound setting */
-    if (soundOn) {
-        video.muted = false;
-        video.volume = 1;
-    } else {
-        video.muted = true;
-    }
+    /* Set sound */
+    video.muted = !soundOn;
+    video.volume = 1;
 
-    /* Unlock scrolling */
+    /* Unlock website */
     document.body.classList.remove("locked");
 
-    /* Hide audio screen immediately */
+
+    /* Hide entry screen */
     audioGate.style.opacity = "0";
     audioGate.style.visibility = "hidden";
     audioGate.style.pointerEvents = "none";
+
 
     /* Show loader */
     loader.style.opacity = "1";
     loader.style.visibility = "visible";
     loader.style.pointerEvents = "auto";
 
-    /* Update sound button */
-    soundToggle.textContent = video.muted ? "🔇" : "🔊";
 
-    /*
-       IMPORTANT:
-       play() is called directly after the user's button click.
-       This gives the browser a valid user interaction.
-    */
+    /* Update sound icon */
+    soundToggle.textContent =
+        video.muted ? "🔇" : "🔊";
+
+
+    /* Start video */
     try {
 
         const playPromise = video.play();
 
         if (playPromise !== undefined) {
 
-            playPromise
-                .then(() => {
-                    console.log("Video started.");
-                })
-                .catch((error) => {
-                    console.log("Video playback blocked:", error);
-                });
+            playPromise.catch(function(error) {
+
+                console.log(
+                    "Video playback issue:",
+                    error
+                );
+
+            });
 
         }
 
     } catch (error) {
 
-        console.log("Video error:", error);
+        console.log(error);
 
     }
 
-    /* Hide loader */
+
+    /* Remove loader */
     setTimeout(function() {
 
         loader.style.opacity = "0";
@@ -1708,69 +2333,84 @@ function enterExperience(soundOn) {
 
 
 /* =========================================================
-   YES BUTTON
+   YES
 ========================================================= */
 
-yesButton.addEventListener("click", function(event) {
+yesButton.addEventListener(
+    "click",
+    function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    enterExperience(true);
+        enterExperience(true);
 
-});
+    }
+);
 
 
 /* =========================================================
-   NO BUTTON
+   NO
 ========================================================= */
 
-noButton.addEventListener("click", function(event) {
+noButton.addEventListener(
+    "click",
+    function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    enterExperience(false);
+        enterExperience(false);
 
-});
+    }
+);
 
 
 /* =========================================================
    SOUND TOGGLE
 ========================================================= */
 
-soundToggle.addEventListener("click", function() {
+soundToggle.addEventListener(
+    "click",
+    function() {
 
-    if (video.muted) {
+        if (video.muted) {
 
-        video.muted = false;
-        video.volume = 1;
-        soundToggle.textContent = "🔊";
+            video.muted = false;
 
-        const playPromise = video.play();
+            video.volume = 1;
 
-        if (playPromise !== undefined) {
-            playPromise.catch(() => {});
+            soundToggle.textContent = "🔊";
+
+            const playPromise =
+                video.play();
+
+            if (playPromise !== undefined) {
+
+                playPromise.catch(function() {});
+
+            }
+
+        } else {
+
+            video.muted = true;
+
+            soundToggle.textContent = "🔇";
+
         }
 
-    } else {
-
-        video.muted = true;
-        soundToggle.textContent = "🔇";
-
     }
-
-});
+);
 
 
 /* =========================================================
-   ANURAG SYSTEM REQUESTS
+   REQUEST SYSTEM
 ========================================================= */
 
 function openRequest(type) {
 
-    const subjectInput =
+    const subject =
         document.getElementById("contactSubject");
 
-    subjectInput.value = type;
+    subject.value = type;
 
     document
         .getElementById("contact")
@@ -1782,14 +2422,17 @@ function openRequest(type) {
 
 
 /* =========================================================
-   DHARMA PROTOCOL
+   DHARMA
 ========================================================= */
 
-dharmaButton.addEventListener("click", function() {
+dharmaButton.addEventListener(
+    "click",
+    function() {
 
-    dharmaMessage.classList.add("active");
+        dharmaMessage.classList.add("active");
 
-});
+    }
+);
 
 
 function closeDharma() {
@@ -1800,39 +2443,57 @@ function closeDharma() {
 
 
 /* =========================================================
-   ESCAPE KEY
+   ESCAPE
 ========================================================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (event.key === "Escape") {
+        if (event.key === "Escape") {
 
-        closeDharma();
+            closeDharma();
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================================================
    PARTICLES
 ========================================================= */
 
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+const canvas =
+    document.getElementById("particles");
+
+const ctx =
+    canvas.getContext("2d");
 
 let particles = [];
 
+
 function resizeCanvas() {
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
 
 }
 
 resizeCanvas();
 
-window.addEventListener("resize", resizeCanvas);
+window.addEventListener(
+    "resize",
+    function() {
+
+        resizeCanvas();
+        createParticles();
+
+    }
+);
 
 
 function createParticles() {
@@ -1840,21 +2501,37 @@ function createParticles() {
     particles = [];
 
     const amount =
-        window.innerWidth < 700 ? 45 : 90;
+        window.innerWidth < 700
+            ? 45
+            : 90;
 
-    for (let i = 0; i < amount; i++) {
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
 
         particles.push({
 
-            x: Math.random() * canvas.width,
+            x:
+                Math.random()
+                * canvas.width,
 
-            y: Math.random() * canvas.height,
+            y:
+                Math.random()
+                * canvas.height,
 
-            size: Math.random() * 1.5 + 0.3,
+            size:
+                Math.random()
+                * 1.5 + .3,
 
-            speed: Math.random() * 0.25 + 0.05,
+            speed:
+                Math.random()
+                * .25 + .05,
 
-            opacity: Math.random() * 0.5 + 0.1
+            opacity:
+                Math.random()
+                * .5 + .1
 
         });
 
@@ -1874,34 +2551,44 @@ function drawParticles() {
         canvas.height
     );
 
-    particles.forEach(function(p) {
 
-        p.y -= p.speed;
+    particles.forEach(
+        function(p) {
 
-        if (p.y < 0) {
-            p.y = canvas.height;
+            p.y -= p.speed;
+
+            if (p.y < 0) {
+
+                p.y =
+                    canvas.height;
+
+            }
+
+
+            ctx.beginPath();
+
+            ctx.arc(
+                p.x,
+                p.y,
+                p.size,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+                "rgba(255,255,255," +
+                p.opacity +
+                ")";
+
+            ctx.fill();
+
         }
+    );
 
-        ctx.beginPath();
 
-        ctx.arc(
-            p.x,
-            p.y,
-            p.size,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fillStyle =
-            "rgba(255,255,255," +
-            p.opacity +
-            ")";
-
-        ctx.fill();
-
-    });
-
-    requestAnimationFrame(drawParticles);
+    requestAnimationFrame(
+        drawParticles
+    );
 
 }
 
@@ -1909,36 +2596,35 @@ drawParticles();
 
 
 /* =========================================================
-   VIDEO FALLBACK
+   VIDEO ERROR
 ========================================================= */
 
-video.addEventListener("error", function() {
+video.addEventListener(
+    "error",
+    function() {
 
-    console.log(
-        "krishna-edit.mp4 could not be loaded. Website will still work."
-    );
+        console.log(
+            "krishna-edit.mp4 could not be loaded."
+        );
 
-});
+    }
+);
 
 
 /* =========================================================
-   PREVENT PAGE FROM GETTING STUCK
+   READY
 ========================================================= */
 
-window.addEventListener("load", function() {
+window.addEventListener(
+    "load",
+    function() {
 
-    /*
-       We intentionally DO NOT automatically remove
-       the audio gate here.
+        console.log(
+            "ANURAG MULTIVERSE READY."
+        );
 
-       The visitor must choose YES or NO.
-    */
-
-    console.log(
-        "ANURAG MULTIVERSE READY."
-    );
-
-});
+    }
+);
 
 </script>
 
